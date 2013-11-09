@@ -6,7 +6,6 @@ $(function() {
 
 
 var Search = {
-  songs: {},
   hitSoundCloud: function(inputEvent) {
     clearTimeout(Search.timeout)
     var query = inputEvent.target.value
@@ -22,6 +21,7 @@ var Search = {
   },
   appendResults: function(songsArray) {
     Search.clearResults()
+    Search.songs = {}
     for(var i = 0 ; i < songsArray.length;i++) {
       Search.appendSong(songsArray[i])
       Search.songs[songsArray[i].id] = songsArray[i]
