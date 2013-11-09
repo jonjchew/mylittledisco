@@ -59,10 +59,12 @@ var Playlist = {
   queue: [],
 
   add: function(song_object) {
-    Playlist.queue.push(song_object)
-    if(Playlist.queue.length===1) {
+    if(AudioPlayer.song.src===""){
       AudioPlayer.set_current_song(song_object.MLDStream)
       AudioPlayer.play()
+    }
+    else {
+      Playlist.queue.push(song_object)
     }
   },
   remove_song: function() {
