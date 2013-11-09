@@ -45,7 +45,7 @@ var AudioPlayer = {
   },
   next_song: function() {
     if(Playlist.queue.length!=0){
-      song = Playlist.remove_song()
+      song = Playlist.pop_first_song()
       AudioPlayer.set_current_song(song.MLDStream)
       AudioPlayer.play()
     }
@@ -68,7 +68,7 @@ var Playlist = {
     }
     Playlist.displayPlaylist()
   },
-  remove_song: function() {
+  pop_first_song: function() {
     return Playlist.queue.shift()
   },
   displayPlaylist: function() {
