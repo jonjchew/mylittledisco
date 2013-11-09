@@ -24,8 +24,12 @@ var Search = {
     Search.songs = {}
     for(var i = 0 ; i < songsArray.length;i++) {
       Search.appendSong(songsArray[i])
-      Search.songs[songsArray[i].id] = songsArray[i]
+      Search.addToSongsArray(songsArray[i])
     }
+  },
+  addToSongsArray: function(songHash) {
+    songHash["MLDStream"] = songHash.stream_url + "?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"
+    Search.songs[songHash.id] = songHash
   },
   clearResults: function() {
     $('#results').empty()
