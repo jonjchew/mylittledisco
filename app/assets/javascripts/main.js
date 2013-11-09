@@ -25,7 +25,7 @@ var AudioPlayer = {
   song: new Audio,
 
   set_current_song: function(song_url) {
-    AudioPlayer.song.src=song_url
+    AudioPlayer.song.src = song_url + "?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"
     AudioPlayer.song.load()
     AudioPlayer.bindEnd()
   },
