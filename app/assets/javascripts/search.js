@@ -1,8 +1,7 @@
 
 
 $(function() {
-  var search = document.getElementById('search-bar')
-  search.addEventListener('input',hitSoundCloud)
+  $('#search-bar').on('input',hitSoundCloud)
 })
 
 var hitSoundCloud = function(inputEvent) {
