@@ -14,10 +14,14 @@ module SoundCloudSearcher
     client.get(query,params)
   end
 
+  def pluck_non_streamable(songs_array)
+    songs_array.select { |song| song["streamable"] }
+
+  end
+
+  def convert_to_array_of_hashes(sound_cloud_array)
+    sound_cloud_array.each_with_object([]) { |song,array| array << song.to_hash }
+  end
+
 end
 
-
-
-
-
-p SoundCloudSearcher.search('strokes')
