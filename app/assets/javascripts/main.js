@@ -50,10 +50,10 @@ var AudioPlayer = {
 var Playlist = {
   queue: [],
 
-  add: function(track_id) {
-    var song_url = 'http://api.soundcloud.com/tracks/' +
-                track_id +
-                '/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf'
+  add: function(clickEvent) {
+    var trackId = clickEvent.target.value
+    var song = Search.getSong(trackId)
+    debugger
     Playlist.queue.push(song_url)
     if(Playlist.queue.length===1) {
       AudioPlayer.set_current_song(song_url)
