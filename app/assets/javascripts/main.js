@@ -1,1 +1,1 @@
-m
+var player = new Audio(src="http://api.soundcloud.com/tracks/118117514/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf");
