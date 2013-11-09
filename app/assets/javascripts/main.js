@@ -38,7 +38,7 @@ var AudioPlayer = {
   next_song: function() {
     if(Playlist.queue.length!=0){
       song = Playlist.remove_song()
-      AudioPlayer.set_current_song(song)
+      AudioPlayer.set_current_song(song.steam_url)
       AudioPlayer.play()
     }
   },
@@ -53,10 +53,9 @@ var Playlist = {
   add: function(clickEvent) {
     var trackId = clickEvent.target.value
     var song = Search.getSong(trackId)
-    debugger
-    Playlist.queue.push(song_url)
+    Playlist.queue.push(song)
     if(Playlist.queue.length===1) {
-      AudioPlayer.set_current_song(song_url)
+      AudioPlayer.set_current_song(song.stream_url)
       AudioPlayer.play()
     }
   },
