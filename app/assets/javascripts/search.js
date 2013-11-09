@@ -4,9 +4,12 @@ $(function() {
   $('#search-bar').on('input',hitSoundCloud)
 })
 
+var timeout
+
 var hitSoundCloud = function(inputEvent) {
+  clearTimeout(timeout)
   var query = inputEvent.target.value
-  getSoundCloudData(query)
+  timeout = setTimeout(function() { getSoundCloudData(query) },1000)
 }
 
 var getSoundCloudData = function(queryString) {
