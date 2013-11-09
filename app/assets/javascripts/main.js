@@ -25,7 +25,7 @@ var AudioPlayer = {
   song: new Audio,
 
   set_current_song: function(song_url) {
-    AudioPlayer.song.src = song_url + "?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"
+    AudioPlayer.song.src = song_url
     AudioPlayer.song.load()
     AudioPlayer.bindEnd()
   },
@@ -38,7 +38,7 @@ var AudioPlayer = {
   next_song: function() {
     if(Playlist.queue.length!=0){
       song = Playlist.remove_song()
-      AudioPlayer.set_current_song(song.steam_url)
+      AudioPlayer.set_current_song(song.MLDStream)
       AudioPlayer.play()
     }
   },
@@ -55,7 +55,7 @@ var Playlist = {
     var song = Search.getSong(trackId)
     Playlist.queue.push(song)
     if(Playlist.queue.length===1) {
-      AudioPlayer.set_current_song(song.stream_url)
+      AudioPlayer.set_current_song(song.MLDStream)
       AudioPlayer.play()
     }
   },
