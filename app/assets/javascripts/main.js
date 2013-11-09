@@ -66,9 +66,23 @@ var Playlist = {
     else {
       Playlist.queue.push(song_object)
     }
+    Playlist.displayPlaylist()
   },
   remove_song: function() {
     return Playlist.queue.shift()
+  },
+  displayPlaylist: function() {
+    $('#playlist').empty()
+    for(var i=0; i < Playlist.queue.length;i++) {
+      var $item = Playlist.displaySong(Playlist.queue[i])
+      $('#playlist').append($item)
+    }
+  },
+  displaySong: function(song_object) {
+    var $item = $('#hidden .playlist-item').clone()
+    $item.find('.song-title').text(song_object.title)
+    $item.find('.remove-song-button').val(song_object.id)
+    return $item
   }
 }
 
