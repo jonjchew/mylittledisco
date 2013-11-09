@@ -48,6 +48,7 @@ var AudioPlayer = {
       song = Playlist.pop_first_song()
       AudioPlayer.set_current_song(song.MLDStream)
       AudioPlayer.play()
+      Playlist.displayPlaylist()
     }
   },
   bindEnd: function() {
