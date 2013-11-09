@@ -3,6 +3,37 @@ $(document).ready(function(){
   Ws.init($('#room').data('uri'), true)
 });
 
+function Ws(channel) {
+  this.dispatcher = new WebSocketRails('localhost:3000/websocket', true);
+  this.setChannel(channel);
+  this.bind(channel);
+};
+
+Ws.prototype.setChannel = function(channel) {
+  this.channel = this.dispatcher.subscribe(channel);
+};
+
+Ws.prototype.bind = function(channel) {
+  var self = this;
+
+  self.channel.bind('get_info', function(data) {
+    console.log('INFO FROM HERE')
+    self.dispatcher.trigger('sync_player', {
+      current_song_time: Math.floor(Math.random() * 100)
+    });
+  });
+
+  self.channel.bind('sync_player', function(data) {
+    console.log(JSON.stringify(data));
+  });
+
+  self.dispatcher.on_open = function(data) {
+    self.dispatcher.trigger('sync_new_user', {
+      room_number: channel
+    });
+  };
+};
+
 var Ws = {
   init: function(url, useWebSockets) {
     Ws.dispatcher = new WebSocketRails(url, useWebSockets)
