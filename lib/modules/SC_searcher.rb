@@ -1,12 +1,13 @@
 require 'soundcloud'
 
-
 module SoundCloudSearcher
 
   extend self
 
   def search(query_string)
-    make_SC_call('/tracks',:q => query_string)
+    search_responses = make_SC_call('/tracks',:q => query_string)
+    search_responses = convert_to_array_of_hashes(search_responses)
+    pluck_non_streamable(search_responses)
   end
 
   def make_SC_call(query,params)
