@@ -1,6 +1,8 @@
 Mylittledisco::Application.routes.draw do
   root to: 'rooms#index'
-  resources :rooms
+  resources :rooms, only: [:create, :index]
+
+  get '/rooms/:name', to: 'rooms#show', as: "room"
 
   post "/search", to: 'songs#searchSoundCloud'
 
