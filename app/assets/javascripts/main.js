@@ -16,8 +16,11 @@ var Ws = {
     Ws.channel.bind('skip_audio', AudioPlayer.skip)
   },
 }
-//"http://api.soundcloud.com/tracks/118117514/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"
+
 //"http://api.soundcloud.com/tracks/117063791/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"
+//"http://api.soundcloud.com/tracks/118117514/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"
+// https://api.soundcloud.com/tracks/118881575" width="100%" height="166" iframe="true" /]
+
 var AudioPlayer = {
   song: new Audio,
 
@@ -77,5 +80,12 @@ function bindPlayer(){
     // Ws.dispatcher.trigger('skip_audio', {
     //   room_number: Ws.roomId
     // });
+  });
+  $('#add-button').on('click', function() {
+    Playlist.add('http://api.soundcloud.com/tracks/' + 
+                $('#add-song-field').val() + 
+                '/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf')
+
+    $('#add-song-field').val('')
   });
 }
