@@ -10,7 +10,7 @@ end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
-group :prduction do 
+group :production do 
   gem 'pg'
 end
 # Use Uglifier as compressor for JavaScript assets
