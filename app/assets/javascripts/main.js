@@ -85,12 +85,19 @@ var Playlist = {
   displaySong: function(song_object) {
     var $item = $('#hidden .playlist-item').clone()
     $item.find('.song-title').text(song_object.title)
-    $item.find('.remove-song-button').val(song_object.id).on('click',Playlist.removeSong)
+    $item.find('.remove-song-button').val(song_object.id).on('click',Playlist.removeSongCallback)
     return $item
   },
-  removeSong: function(clickEvent) {
+  removeSongCallback: function(clickEvent) {
 
     var songId = clickEvent.target.value
+
+    Ws.dispatcher.trigger('remove_song', {
+      room_number: Ws.roomId,
+      songId: songId
+    })
+  },
+  removeSong: function(songId) {
     var deletedSongIndex
 
     for (var i = 0; i < Playlist.queue.length; i++) {
@@ -98,10 +105,8 @@ var Playlist = {
         deletedSongIndex = i
       }
     }
-
     Playlist.queue.splice(deletedSongIndex,1)
     Playlist.displayPlaylist()
-
   }
 }
 
