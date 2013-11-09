@@ -32,5 +32,4 @@ var clearResults = function() {
 var appendSong = function(songHash) {
   var song = $('#hidden .song').clone().text(songHash.title)
   $('#results').append(song)
-  console.log(songHash)
 }
