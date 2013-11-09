@@ -19,7 +19,7 @@ var getSoundCloudData = function(queryString) {
 }
 
 var appendResults = function(songsArray) {
-  clearResults();
+  clearResults()
   for(var i = 0 ; i < songsArray.length;i++) {
     appendSong(songsArray[i])
   }
