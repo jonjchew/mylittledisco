@@ -17,6 +17,14 @@ var Ws = {
     Ws.channel.bind('add_song', function(data){
       Playlist.add(data.song)
     })
+  },
+  add_song: function(e) {
+    var track_id = e.target.value
+    var song_object = Search.getSong(track_id)
+    Ws.dispatcher.trigger('add_song', {
+      room_number: Ws.roomId,
+      song: song_object
+    })
   }
 }
 
@@ -50,12 +58,10 @@ var AudioPlayer = {
 var Playlist = {
   queue: [],
 
-  add: function(clickEvent) {
-    var trackId = clickEvent.target.value
-    var song = Search.getSong(trackId)
-    Playlist.queue.push(song)
+  add: function(song_object) {
+    Playlist.queue.push(song_object)
     if(Playlist.queue.length===1) {
-      AudioPlayer.set_current_song(song.MLDStream)
+      AudioPlayer.set_current_song(song_object.MLDStream)
       AudioPlayer.play()
     }
   },
@@ -80,12 +86,12 @@ function bindPlayer(){
       room_number: Ws.roomId
     });
   });
-  $('#add-button').on('click', function() {
-    var track_id = $('#add-song-field').val()
-    $('#add-song-field').val('')
-    Ws.dispatcher.trigger('add_song', {
-      room_number: Ws.roomId,
-      song: track_id
-    })
+  $('.add-song-button').on('click', function() {
+    // var track_id = $('#add-song-field').val()
+    // $('#add-song-field').val('')
+    // Ws.dispatcher.trigger('add_song', {
+    //   room_number: Ws.roomId,
+    //   song: track_id
+    // })
   });
 }
