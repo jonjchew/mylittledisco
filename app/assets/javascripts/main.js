@@ -81,8 +81,23 @@ var Playlist = {
   displaySong: function(song_object) {
     var $item = $('#hidden .playlist-item').clone()
     $item.find('.song-title').text(song_object.title)
-    $item.find('.remove-song-button').val(song_object.id)
+    $item.find('.remove-song-button').val(song_object.id).on('click',Playlist.removeSong)
     return $item
+  },
+  removeSong: function(clickEvent) {
+
+    var songId = clickEvent.target.value
+    var deletedSongIndex
+
+    for (var i = 0; i < Playlist.queue.length; i++) {
+      if (Playlist.queue[i].id === songId) {
+        deletedSongIndex = i
+      }
+    }
+
+    Playlist.queue.splice(deletedSongIndex,1)
+    Playlist.displayPlaylist()
+
   }
 }
 
