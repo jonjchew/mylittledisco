@@ -33,6 +33,8 @@ var clearResults = function() {
 }
 
 var appendSong = function(songHash) {
-  var song = $('#hidden .song').clone().text(songHash.title)
+  var song = $('#hidden .song').clone()
+  song.find('.song-title').text(songHash.title)
+  song.find('.add-song-button').val(JSON.stringify(songHash))
   $('#results').append(song)
 }
