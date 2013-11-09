@@ -1,6 +1,6 @@
 require 'soundcloud'
 
-module SoundCloudSearcher
+module SoundCloud
 
   extend self
 
