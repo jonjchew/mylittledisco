@@ -44,6 +44,7 @@ var AudioPlayer = {
     AudioPlayer.song.pause();
   },
   next_song: function() {
+    AudioPlayer.song.src = null
     if(Playlist.queue.length!=0){
       song = Playlist.remove_song()
       AudioPlayer.set_current_song(song.MLDStream)
