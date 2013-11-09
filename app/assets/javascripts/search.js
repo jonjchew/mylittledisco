@@ -33,11 +33,11 @@ var Search = {
   appendSong: function(songHash) {
     var song = $('#hidden .song').clone()
     song.find('.song-title').text(songHash.title)
-    song.find('.add-song-button').val(songHash.id)
+    song.find('.add-song-button').val(songHash.id).on('click',Playlist.add)
     $('#results').append(song)
   },
   getSong: function(id) {
-    return songs[id]
+    return Search.songs[id]
   }
 }
 
