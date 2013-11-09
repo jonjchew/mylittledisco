@@ -1,25 +1,25 @@
 $(document).ready(function(){
   bindPlayer()
-  // Ws.init($('#room').data('uri'), true)
+  Ws.init($('#room').data('uri'), true)
 });
 
 var Ws = {
   init: function(url, useWebSockets) {
     Ws.dispatcher = new WebSocketRails(url, useWebSockets)
-    Ws.roomId = document.getElementById('room-id').innerText
+    Ws.roomId = document.getElementById('room-name').innerText
     Ws.channel = Ws.dispatcher.subscribe(Ws.roomId)
     Ws.bind()
   },
   bind: function() {
-    Ws.channel.bind('play_audio', AudioPlayer.play)
-    Ws.channel.bind('pause_audio', AudioPlayer.pause)
-    Ws.channel.bind('skip_audio', AudioPlayer.skip)
-  },
+    Ws.channel.bind('play_song', AudioPlayer.play)
+    Ws.channel.bind('pause_song', AudioPlayer.pause)
+    Ws.channel.bind('next_song', AudioPlayer.next_song)
+    Ws.channel.bind('add_song', function(data){
+      Playlist.add(data.song)
+    })
+  }
 }
 
-//"http://api.soundcloud.com/tracks/117063791/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"
-//"http://api.soundcloud.com/tracks/118117514/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf"
-// https://api.soundcloud.com/tracks/118881575" width="100%" height="166" iframe="true" /]
 
 var AudioPlayer = {
   song: new Audio,
@@ -50,7 +50,10 @@ var AudioPlayer = {
 var Playlist = {
   queue: [],
 
-  add: function(song_url) {
+  add: function(track_id) {
+    var song_url = 'http://api.soundcloud.com/tracks/' + 
+                track_id + 
+                '/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf'
     Playlist.queue.push(song_url)
     if(Playlist.queue.length===1) {
       AudioPlayer.set_current_song(song_url)
@@ -64,28 +67,26 @@ var Playlist = {
 
 function bindPlayer(){
   $('#play').on('click', function(){
-    AudioPlayer.play()
-    // Ws.dispatcher.trigger('play_audio', {
-    //   room_number: Ws.roomId
-    // });
+    Ws.dispatcher.trigger('play_song', {
+      room_number: Ws.roomId
+    });
   });
   $('#pause').on('click', function(){
-    AudioPlayer.pause()
-    // Ws.dispatcher.trigger('pause_audio', {
-    //   room_number: Ws.roomId
-    // });
+    Ws.dispatcher.trigger('pause_song', {
+      room_number: Ws.roomId
+    });
   });
   $('#next').on('click', function(){
-    AudioPlayer.next_song()
-    // Ws.dispatcher.trigger('skip_audio', {
-    //   room_number: Ws.roomId
-    // });
+    Ws.dispatcher.trigger('next_song', {
+      room_number: Ws.roomId
+    });
   });
   $('#add-button').on('click', function() {
-    Playlist.add('http://api.soundcloud.com/tracks/' + 
-                $('#add-song-field').val() + 
-                '/stream?consumer_key=d61f17a08f86bfb1dea28539908bc9bf')
-
+    var track_id = $('#add-song-field').val()
     $('#add-song-field').val('')
+    Ws.dispatcher.trigger('add_song', {
+      room_number: Ws.roomId,
+      song: track_id
+    })
   });
 }
