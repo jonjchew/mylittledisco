@@ -1,0 +1,11 @@
+<% if @rooms %>
+<h2>Rooms to join</h2>
+  <% @rooms.each do |room| %>
+    <%= link_to room.name, room_path(room) %><br>
+  <% end %>
+<% end %>
+
+<%= form_for @room, url: {action: 'create'} do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit "Create Room" %>
+<% end %>
