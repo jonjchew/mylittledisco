@@ -12,16 +12,20 @@ class PartiesController < WebsocketRails::BaseController
     puts "User left"
   end
 
-  def play_audio
-    WebsocketRails[message[:room_number]].trigger(:play_audio, {})
+  def play_song
+    WebsocketRails[message[:room_number]].trigger(:play_song, {})
   end
 
-  def pause_audio
-    WebsocketRails[message[:room_number]].trigger(:pause_audio, {})
+  def pause_song
+    WebsocketRails[message[:room_number]].trigger(:pause_song, {})
   end
 
-  def skip_audio
-    WebsocketRails[message[:room_number]].trigger(:skip_audio, {})
+  def next_song
+    WebsocketRails[message[:room_number]].trigger(:next_song, {})
+  end
+
+  def add_song
+    WebsocketRails[message[:room_number]].trigger(:add_song, {song: message[:song]})
   end
 
 end
