@@ -12,8 +12,9 @@ WebsocketRails::EventMap.describe do
   #   end
   # The above will handle an event triggered on the client like `product.new`.
   subscribe :client_connected, to: PartiesController, with_method: :client_connected
-  subscribe :play_audio, to: PartiesController, with_method: :play_audio
-  subscribe :pause_audio, to: PartiesController, with_method: :pause_audio
-  subscribe :skip_audio, to: PartiesController, with_method: :skip_audio
+  subscribe :play_song, to: PartiesController, with_method: :play_song
+  subscribe :pause_song, to: PartiesController, with_method: :pause_song
+  subscribe :next_song, to: PartiesController, with_method: :next_song
+  subscribe :add_song, to: PartiesController, with_method: :add_song
   subscribe :client_disconnected, to: PartiesController, with_method: :delete_user
 end
