@@ -19,6 +19,19 @@ var getSoundCloudData = function(queryString) {
   })
 }
 
-var appendResults = function() {
-  alert('raorao')
+var appendResults = function(songsArray) {
+  clearResults();
+  for(var i = 0 ; i < songsArray.length;i++) {
+    appendSong(songsArray[i])
+  }
+}
+
+var clearResults = function() {
+  $('#results').empty()
+}
+
+var appendSong = function(songHash) {
+  var song = $('#hidden .song').clone().text(songHash.title)
+  $('#results').append(song)
+  console.log(songHash)
 }
