@@ -17,6 +17,9 @@ var Ws = {
     Ws.channel.bind('add_song', function(data){
       Playlist.add(data.song)
     })
+    Ws.channel.bind('remove_song', function(data){
+      Playlist.removeSong(data.songId)
+    })
   },
   add_song: function(e) {
     var track_id = e.target.value
