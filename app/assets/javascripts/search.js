@@ -8,14 +8,9 @@ $(function() {
 var Search = {
   hitSoundCloud: function(inputEvent) {
     clearTimeout(Search.timeout)
-    var query = inputEvent.target.value
+    query = inputEvent.target.value
 
-    if (query) {
-      Search.timeout = setTimeout(function() { Search.getSoundCloudData(query) },1000)
-    }
-    else {
-      Search.clearResults()
-    }
+    Search.timeout = setTimeout(function() { Search.getSoundCloudData(query) },100)
   },
   getSoundCloudData: function(queryString) {
     $.ajax({
@@ -28,9 +23,11 @@ var Search = {
   appendResults: function(songsArray) {
     Search.clearResults()
     Search.songs = {}
-    for(var i = 0 ; i < songsArray.length;i++) {
-      Search.appendSong(songsArray[i])
-      Search.addToSongsArray(songsArray[i])
+    if (Search.checkInput()) {
+      for(var i = 0 ; i < songsArray.length;i++) {
+        Search.appendSong(songsArray[i])
+        Search.addToSongsArray(songsArray[i])
+      }
     }
   },
   addToSongsArray: function(songHash) {
@@ -54,5 +51,8 @@ var Search = {
   },
   getSong: function(id) {
     return Search.songs[id]
+  },
+  checkInput: function() {
+    return !!$('#search-bar').val()
   }
 }
