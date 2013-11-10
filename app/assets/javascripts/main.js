@@ -184,7 +184,6 @@ function bindPlayer(){
   });
   $('#mobile-menu').on('click', function() {
     $('.container').toggleClass('slide')
-    // $(this.find('.song-art-overlay')).css('opacity','0.8')
   });
 }
 
@@ -194,16 +193,18 @@ var LandingPage = {
     LandingPage.bindJoinRoom()
   },
   bindCreateRoom: function() {
-    $('#create-room-button').on('click', LandingPage.revealCreateInput)
+    $('#create-room-button').one('click', LandingPage.revealCreateInput)
   },
-  revealCreateInput: function() {
+  revealCreateInput: function(e) {
+    e.preventDefault()
     $('#create-room-acc').addClass('reveal')
     $('#create-room-input').focus()
   },
   bindJoinRoom: function() {
-    $('#join-room-button').on('click', LandingPage.revealJoinInput)
+    $('#join-room-button').one('click', LandingPage.revealJoinInput)
   },
-  revealJoinInput: function() {
+  revealJoinInput: function(e) {
+    e.preventDefault()
     $('#join-room-acc').addClass('reveal')
     $('#join-room-input').focus()
   }

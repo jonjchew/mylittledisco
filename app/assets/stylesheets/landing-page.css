@@ -11,16 +11,18 @@
 }
 
 .landing-page-container input {
+	text-indent: 1em;
   height: 45px;
   font-family: 'Lato', sans-serif;
   font-size: 1em;
   width: 245px;
   position: relative;
   margin: 0 auto;
+  margin-top: 20px;
 }
 
 .landing-page-container p {
-	margin: 10px;
+	margin: 0px;
 }
 
 section {
@@ -34,7 +36,7 @@ section {
 }
 
 .reveal {
-	height: 45px;
+	height: 70px;
 }
 
 .landing-page-container input.reveal {
@@ -43,5 +45,5 @@ section {
 
 #landing-page-buttons {
 	display: inline-block;
-	margin-top: 100px;
+	margin-top: 50px;
 }
