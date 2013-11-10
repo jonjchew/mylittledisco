@@ -181,8 +181,8 @@ function bindPlayer(){
       room_number: Ws.channelName
     });
   });
-  $('.song-art-image').on('click', function() {
-    console.log('hit')
+  $('#mobile-menu').on('click', function() {
+    $('.container').toggleClass('slide')
     // $(this.find('.song-art-overlay')).css('opacity','0.8')
   });
 }

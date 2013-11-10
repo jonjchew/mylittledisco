@@ -1,19 +1,30 @@
 body {
   width: 100%;
+  height: 100%;
   margin: 0;
   font-family: 'Lato', sans-serif;
 }
 .container {
+  float: left;
+  background: white;
   width: 360px;
   text-align: center;
   position: relative;
+  z-index: 1;
+  -webkit-transition:all 0.8s ease-in-out;
+  -moz-transition:all 0.8s ease-in-out;
+  -o-transition:all 0.8s ease-in-out;
+  transition:all 0.8s ease-in-out;
+}
+.slide {
+  margin-left: 320px;
 }
 
 #mobile-menu {
-  font-size: 2.2em;
+  font-size: 1.8em;
   display: block;
   position: absolute;
-  top: 25px;
+  top: 30px;
   float: left;
   margin-left: 20px;
   cursor: pointer;
@@ -25,6 +36,7 @@ body {
   color: white;
   width: 100%;
   top: 0px;
+  z-index: 2;
 }
 
 #nav-bar h1 {
@@ -48,7 +60,7 @@ body {
 /*search results*/
 
 #results {
-  margin-top: 2em;
+  margin-top: 9em;
   float: left;
   margin-bottom: 5em;
 }
@@ -132,4 +144,12 @@ body {
 
 #next {
   width: 10%;
+}
+
+.playlist {
+  position: absolute;
+  top: 0px;
+  background-color: red;
+  width: 100%;
+  height: 100%;
 }
