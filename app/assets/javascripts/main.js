@@ -145,7 +145,7 @@ var Playlist = {
       $item.find('.playlist-image').attr('src', barge_size_image)
     }
     else {
-      $item.find('.playlist-image').attr('src', "http://i1.sndcdn.com/artworks-000033564444-hama0x-large.jpg?3eddc42")
+      $item.find('.playlist-image').attr('src', "http://i1.sndcdn.com/artworks-000033564444-hama0x-badge.jpg?3eddc42")
     }
     return $item
   },

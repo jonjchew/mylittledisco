@@ -6,11 +6,12 @@ body {
 }
 .container {
   float: left;
-  background: gray;
+  background: #3c434b;
   width: 360px;
   min-height: 950px;
   text-align: center;
   position: relative;
+  color: white;
   -webkit-transition:all 0.8s ease-in-out;
   -moz-transition:all 0.8s ease-in-out;
   -o-transition:all 0.8s ease-in-out;
@@ -56,6 +57,7 @@ body {
   position: relative;
   margin: 0 auto;
   text-indent: 1em;
+  background-color: rgb(241, 241, 241);
   border: none;
 }
 
@@ -65,6 +67,7 @@ body {
   margin-top: 9em;
   float: left;
   margin-bottom: 5em;
+  padding-right: .5em;
 }
 
 .song {
@@ -73,20 +76,25 @@ body {
   height: 170px;
   float: left;
   font-size: 0.85em;
-  margin-bottom: 1em;
+  margin-bottom: 4em;
+}
+
+.song img {
+  width: 135px;
 }
 
 .song-art {
   width: 100px;
   margin: 0 auto;
   position: relative;
+  margin-right: 4em;
 }
 
 .song-art-overlay {
   cursor: pointer;
   background: black;
-  width: 100px;
-  height: 100px;
+  width: 135px;
+  height: 135px;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -124,7 +132,7 @@ body {
 #current-song-title {
   text-align: center;
   display: inline-block;
-  margin-top: 1.5em;
+  margin-top: 1em;
   font-size: .9em;
   width: 60%;
   color: white;
@@ -187,6 +195,7 @@ body {
   display: inline-block;
   width: 65%;
   margin-left: .5em;
+  margin-top: 1em;
   font-size: .8em;
 }
 
