@@ -9,16 +9,29 @@ var Search = {
   hitSoundCloud: function(inputEvent) {
     clearTimeout(Search.timeout)
     var query = inputEvent.target.value
-    Search.timeout = setTimeout(function() { Search.getSoundCloudData(query) },100)
+    Search.timeout = setTimeout(function() { Search.getSoundCloudData(query) }, 1200)
   },
   getSoundCloudData: function(queryString) {
+    Search.showLoading();
     $.ajax({
       url: '/search',
       type: 'POST',
       data: {query: queryString},
-      success: Search.appendResults
+      success: Search.appendResults,
+      complete: function() {
+        Search.hideLoading();
+      }
     })
   },
+
+  showLoading: function() {
+    $('#search-bar-loading').show();
+  },
+
+  hideLoading: function() {
+    $('#search-bar-loading').hide();
+  },
+
   appendResults: function(songsArray) {
     $('#watermark').hide()
     Search.clearResults()

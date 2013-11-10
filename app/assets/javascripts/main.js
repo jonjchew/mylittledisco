@@ -114,6 +114,7 @@ var AudioPlayer = {
 
   set_current_song: function(song_object) {
     AudioPlayer.currentSong = song_object
+    AudioPlayer.song.pause()
     AudioPlayer.song = new Audio
     AudioPlayer.song.src = song_object.MLDStream
     AudioPlayer.song.load()

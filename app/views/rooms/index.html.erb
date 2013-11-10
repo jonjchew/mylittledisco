@@ -5,21 +5,25 @@
 	<%= image_tag "mylittledisco340.png",id: "logo" %>
 
 		<div id='landing-page-buttons'>
-			<%= form_for @room, url: {action: 'create'} do |f| %>
-			<section id='create-room-acc'>
-				<%= f.text_field :name, placeholder: 'Enter your room name', id: 'create-room-input' %>
-			</section>
-			<p>
-				<%= f.submit "Create a room", id: 'create-room-button', class: 'btn btn-primary'  %>
-			</p>
-			<% end %>
+			<div id='create-room' class='button-section'>
+				<%= form_for @room, url: {action: 'create'} do |f| %>
+				<section id='create-room-acc'>
+					<%= f.text_field :name, placeholder: 'Enter your room name', id: 'create-room-input' %>
+				</section>
+				<p>
+					<%= f.submit "Create a room", id: 'create-room-button', class: 'btn btn-primary'  %>
+				</p>
+				<% end %>
+			</div>
 
-			<%= form_tag("/join", method: 'post') do |f| %>
-			<section id='join-room-acc'>
-				<%= text_field(:room, :name, id: 'join-room-input', placeholder: 'Enter room name') %>
-			</section>
-				<%= submit_tag "Join a room", id: 'join-room-button', class: 'btn btn-primary' %>
-			<% end %>
+			<div id='join-room' class='button-section'>
+				<%= form_tag("/join", method: 'post') do |f| %>
+				<section id='join-room-acc'>
+					<%= text_field(:room, :name, id: 'join-room-input', placeholder: 'Enter room name') %>
+				</section>
+					<%= submit_tag "Join a room", id: 'join-room-button', class: 'btn btn-primary' %>
+				<% end %>
+			</div>
 		</div>
 
 		<div class="error"><%= flash[:error] %></div>
