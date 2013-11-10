@@ -1,5 +1,4 @@
 class PartiesController < WebsocketRails::BaseController
-
   def initialize_session
     puts "Session Initialized\n"
   end
@@ -17,7 +16,7 @@ class PartiesController < WebsocketRails::BaseController
   def send_message
     WebsocketRails[connection_store[:room_number]].trigger(:new_message, {
       :user_name => connection_store[connection_store[:room_number]],
-      :message   => message[:message]
+      :message   => ERB::Util.html_escape(message[:message])
     })
   end
 
