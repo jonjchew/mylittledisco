@@ -6,6 +6,7 @@ $(document).ready(function(){
   Ws.init(roomName, socketUrl, useWebSockets);
 
   bindPlayer();
+  LandingPage.init()
 });
 
 var Ws = {
@@ -185,4 +186,24 @@ function bindPlayer(){
     $('.container').toggleClass('slide')
     // $(this.find('.song-art-overlay')).css('opacity','0.8')
   });
+}
+
+var LandingPage = {
+  init: function(){
+    LandingPage.bindCreateRoom()
+    LandingPage.bindJoinRoom()
+  },
+  bindCreateRoom: function() {
+    $('#create-room-button').on('click', LandingPage.revealCreateInput)
+  },
+  revealCreateInput: function() {
+    $('#create-room-acc').addClass('reveal')
+  },
+  bindJoinRoom: function() {
+    $('#join-room-button').on('click', LandingPage.revealJoinInput)
+  },
+  revealJoinInput: function() {
+    console.log('hit')
+    $('#join-room-acc').addClass('reveal')
+  }
 }

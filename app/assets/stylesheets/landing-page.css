@@ -1,0 +1,47 @@
+.landing-page-container {
+	background-color: #3c434b;
+	width: 100%;
+	min-height: 600px;
+	text-align: center;
+}
+
+#logo {
+	margin-top: 100px;
+	float:right;
+}
+
+.landing-page-container input {
+  height: 45px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  width: 245px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.landing-page-container p {
+	margin: 10px;
+}
+
+section {
+	height: 0px;
+	overflow: hidden;
+  -webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+.reveal {
+	height: 45px;
+}
+
+.landing-page-container input.reveal {
+	display: block;
+}
+
+#landing-page-buttons {
+	display: inline-block;
+	margin-top: 100px;
+}
