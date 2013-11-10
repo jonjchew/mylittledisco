@@ -1,6 +1,7 @@
 
 .btn {
-  width: 250px;
+  text-indent: 0 !important;
+  width: 245px;
   font-family: 'Lato', sans-serif;
   display: inline-block;
   margin-bottom: 0;
