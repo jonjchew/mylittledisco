@@ -19,10 +19,12 @@
   </div>
 
     <p id='stats'>
-      <span id="user-count"><%= @room.users_count %></span> listener
-  <% if @room.users_count != 1 %>
-    s
-  <% end %>
+      <span id="user-count"><%= @room.users_count %></span>
+      <% if @room.users_count != 1 %>
+          listeners
+        <% else %>
+          listener
+        <% end %>
    currently in this room.</p>
 
   <div id="search-wrapper">
