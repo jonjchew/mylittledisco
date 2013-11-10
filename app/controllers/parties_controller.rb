@@ -5,11 +5,28 @@ class PartiesController < WebsocketRails::BaseController
   end
 
   def client_connected
-
   end
 
   def delete_user
     puts "User left"
+  end
+
+  def sync_new_user
+    room_number = message[:room_number].to_s
+    connection_store[:room_number] = room_number
+
+    WebsocketRails[room_number].subscribers.sample.trigger(WebsocketRails::Event.new(:room_state, {
+      :channel => room_number,
+      :data => {}
+    }))
+  end
+
+  def synchronize_channel
+    room_number = connection_store[:room_number]
+
+    WebsocketRails[room_number].trigger :synchronize_room, {
+      room_info: message[:room_info]
+    }
   end
 
   def play_song
@@ -26,6 +43,10 @@ class PartiesController < WebsocketRails::BaseController
 
   def add_song
     WebsocketRails[message[:room_number]].trigger(:add_song, {song: message[:song]})
+  end
+
+  def remove_song
+    WebsocketRails[message[:room_number]].trigger(:remove_song, {songId: message[:songId]})
   end
 
 end
