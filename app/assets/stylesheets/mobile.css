@@ -102,6 +102,11 @@ body {
   cursor: pointer;
 }
 
+.song-art-overlay.disabled {
+  opacity: 0.5;
+  cursor: none;
+  pointer-events:none;
+}
 /*player */
 #player {
   margin: 0 auto;
@@ -168,7 +173,7 @@ body {
   cursor: pointer;
   color: gray;
 }
-.playlist {
+#playlist {
   margin: 1em;
 }
 
@@ -182,5 +187,6 @@ body {
   display: inline-block;
   width: 65%;
   margin-left: .5em;
+  font-size: .8em;
 }
 
