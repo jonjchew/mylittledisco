@@ -219,12 +219,13 @@
 
   .landing-page-container {
     background-color: #3c434b;
-    width: 100%;
+    width: 360px;
     min-height: 600px;
     text-align: center;
   }
 
   #logo {
+    width: 100%;
     margin-top: 100px;
     float:right;
   }

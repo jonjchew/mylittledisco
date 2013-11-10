@@ -1,3 +1,13 @@
+button,
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
 
 .btn {
   text-indent: 0 !important;
