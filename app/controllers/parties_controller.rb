@@ -14,6 +14,13 @@ class PartiesController < WebsocketRails::BaseController
     })
   end
 
+  def send_message
+    WebsocketRails[connection_store[:room_number]].trigger(:new_message, {
+      :user_name => connection_store[connection_store[:room_number]],
+      :message   => message[:message]
+    })
+  end
+
   def sync_new_user
     room_number = message[:room_number].to_s
     connection_store[:room_number] = room_number
