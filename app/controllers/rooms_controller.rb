@@ -7,7 +7,14 @@ class RoomsController < ApplicationController
 
   def create
     room = Room.find_or_create_by(room_params)
-    redirect_to room
+
+    if room.persisted?
+      redirect_to room
+    else
+      flash[:error] = room.errors.full_messages[0]
+      redirect_to root_path
+    end
+
   end
 
   def join
