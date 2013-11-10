@@ -89,6 +89,7 @@ body {
   margin-bottom: 5em;
   float: left;
   padding-right: .5em;
+  padding-bottom: 5em;
 }
 
 .song {
@@ -251,6 +252,27 @@ body {
   margin-left: .5em;
   margin-top: 1em;
   font-size: .8em;
+}
+
+@media screen and (max-width: 850px) {
+  .container {
+    margin: 0 auto;
+    width: 600px;
+  }
+  .song {
+    width: 33%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .container {
+    width: 500px;
+  }
+  .song {
+    width: 33%;
+  }
+  .song img {
+    width: 100px;
+  }
 }
 
 
