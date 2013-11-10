@@ -53,7 +53,7 @@ body {
 #search-bar {
   margin: 0 auto;
   height: 2em;
-  width: 80%;
+  width: 90%;
   margin-top: 10em;
   font-size: 1em;
   font-family: 'Lato', sans-serif;
@@ -82,9 +82,9 @@ body {
 
 #results {
   margin: 0 auto;
-  margin-top: 9em;
-  float: left;
+  margin-top: 5em;
   margin-bottom: 5em;
+  float: left;
   padding-right: .5em;
 }
 
@@ -177,6 +177,9 @@ body {
 }
 
 #next {
+    position: fixed;
+
+  right: 20px;
   width: 10%;
 }
 
