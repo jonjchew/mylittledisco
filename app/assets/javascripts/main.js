@@ -48,7 +48,7 @@ var Ws = {
     })
 
     Ws.channel.bind('remove_song', function(data){
-      Playlist.removeSong(data.songId)
+      Playlist.removeSong(parseInt(data.songId))
     })
   },
 
