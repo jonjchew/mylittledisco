@@ -6,7 +6,12 @@ $(document).ready(function(){
   Ws.init(roomName, socketUrl, useWebSockets);
 
   bindPlayer();
+  LandingPage.init()
 });
+
+var updateUserCount = function(data) {
+  $('#user-count').text(data["users"])
+}
 
 var Ws = {
   init: function(channelName, url, useWebSockets) {
@@ -29,7 +34,7 @@ var Ws = {
     Ws.channel.bind('play_song', AudioPlayer.play)
     Ws.channel.bind('pause_song', AudioPlayer.pause)
     Ws.channel.bind('next_song', AudioPlayer.next_song)
-
+    Ws.channel.bind('update_user_count', updateUserCount)
     Ws.channel.bind('add_song', function(data){
       Playlist.add(data.song)
     })
@@ -92,7 +97,12 @@ var Room = {
 
       Playlist.queue = data["room_info"]["queue"]
       Playlist.displayPlaylist()
+
     }
+
+    Ws.dispatcher.trigger('update_user_count', {
+        room_number: Ws.channelName
+    })
   }
 }
 
@@ -217,4 +227,27 @@ function bindPlayer(){
     $('#nav-bar').toggleClass('absolute')
     window.scrollTo('.container')
   });
+}
+
+var LandingPage = {
+  init: function(){
+    LandingPage.bindCreateRoom()
+    LandingPage.bindJoinRoom()
+  },
+  bindCreateRoom: function() {
+    $('#create-room-button').one('click', LandingPage.revealCreateInput)
+  },
+  revealCreateInput: function(e) {
+    e.preventDefault()
+    $('#create-room-acc').addClass('reveal')
+    $('#create-room-input').focus()
+  },
+  bindJoinRoom: function() {
+    $('#join-room-button').one('click', LandingPage.revealJoinInput)
+  },
+  revealJoinInput: function(e) {
+    e.preventDefault()
+    $('#join-room-acc').addClass('reveal')
+    $('#join-room-input').focus()
+  }
 }
