@@ -6,6 +6,7 @@ $(document).ready(function(){
   Ws.init(roomName, socketUrl, useWebSockets);
 
   bindPlayer();
+  Chat.init()
   LandingPage.init()
   focusSearchBar()
 });
