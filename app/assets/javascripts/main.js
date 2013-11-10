@@ -113,8 +113,10 @@ var AudioPlayer = {
 
   set_current_song: function(song_object) {
     AudioPlayer.currentSong = song_object
+    AudioPlayer.song = new Audio
     AudioPlayer.song.src = song_object.MLDStream
     AudioPlayer.song.load()
+
     AudioPlayer.setSongText(song_object.title)
     AudioPlayer.bindEnd()
   },
@@ -228,7 +230,12 @@ function bindPlayer(){
     $('#nav-bar').toggleClass('absolute')
     window.scrollTo('.container')
   });
+
+  $('#playlist-toggle').on('click', function() {
+    $('.playlist-container').toggleClass('show-full')
+  });
 }
+
 
 var LandingPage = {
   init: function(){
