@@ -20,6 +20,7 @@ var Search = {
     })
   },
   appendResults: function(songsArray) {
+    $('#watermark').hide()
     Search.clearResults()
     Search.songs = {}
     for(var i = 0 ; i < songsArray.length;i++) {

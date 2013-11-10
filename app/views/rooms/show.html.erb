@@ -14,12 +14,12 @@
     <i id='mobile-menu' class='fa fa-bars'></i>
     <h1><span id="room-name"><%= @room.name %><span></h1>
 
+  </div>
     <% if @room.users_count > 1 %>
       <p id='stats'><span id="user-count"><%= @room.users_count %></span> listeners currently in this room.</p>
     <% end %>
-  </div>
   <input placeholder='Add a song to your playlist' type"text" id="search-bar">
-
+  <%= image_tag "discowatermark.png",id: "watermark" %>
   <div id="results"></div>
 
   <div id="hidden">
