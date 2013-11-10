@@ -15,6 +15,7 @@ class RoomsController < ApplicationController
     if @room
       redirect_to @room
     else
+      flash[:error] = "that room doesn't exist yet!"
       redirect_to root_path
     end
   end
