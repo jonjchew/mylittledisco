@@ -20,6 +20,10 @@ body {
   margin-left: 320px;
 }
 
+.slide-left {
+  margin-left: -320px;
+}
+
 #mobile-menu {
   font-size: 1.8em;
   display: block;
@@ -27,6 +31,15 @@ body {
   top: 30px;
   float: left;
   margin-left: 20px;
+  cursor: pointer;
+}
+
+#mobile-menu-chat {
+  font-size: 1.8em;
+  display: block;
+  position: absolute;
+  top: 30px;
+  right: 20px;
   cursor: pointer;
 }
 
@@ -190,3 +203,37 @@ body {
   font-size: .8em;
 }
 
+/***
+ * Chat
+ */
+ #chat-container {
+  position: absolute;
+  top: 0px;
+  background-color: white;
+  width: 360px;
+  height: 100%;
+  z-index: -2;
+}
+
+#chat-container h2 {
+  text-align: center;
+}
+
+#chat-container textarea {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#chat-wrapper {
+  margin-left: 10px;
+  padding: 0;
+}
+
+#chat-wrapper li {
+  list-style: none;
+}
+
+#chat-wrapper li span {
+  font-weight: bold;
+  margin-right: 5px;
+}

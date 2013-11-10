@@ -1,15 +1,14 @@
 <div class="playlist-container">
-  <h1> Playlist </h1>
+  <h1>Playlist</h1>
   <div id='playlist'>
   </div>
 </div>
 
-
-<div id="chat">
+<div id="chat-container">
+  <h2>Chat</h2>
   <textarea id="chat-message"></textarea>
   <ul id="chat-wrapper"></ul>
 </div>
-
 
 <div class="container">
   <div id="room" class="well" data-uri="<%= request.host %>:<%= request.port %>/websocket">
@@ -17,6 +16,7 @@
   <div id='nav-bar'>
     <i id='mobile-menu' class='fa fa-bars'></i>
     <h1><span id="room-name"><%= @room.name %><span></h1>
+    <i id='mobile-menu-chat' class='fa fa-comment-o'></i>
 
     <% if @room.users_count > 1 %>
       <p id='stats'><span id="user-count"><%= @room.users_count %></span> listeners currently in this room.</p>

@@ -224,4 +224,8 @@ function bindPlayer(){
     $('.container').toggleClass('slide')
     // $(this.find('.song-art-overlay')).css('opacity','0.8')
   });
+
+  $('#mobile-menu-chat').on('click', function() {
+    $('.container').toggleClass('slide-left')
+  });
 }
