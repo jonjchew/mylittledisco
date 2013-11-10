@@ -232,6 +232,10 @@ function bindPlayer(){
     window.scrollTo('.container')
   });
 
+  $('#mobile-menu-chat').on('click',function() {
+    $('.container').toggleClass('slide-left')
+  });
+
   $('#playlist-toggle').on('click', function() {
     $('.playlist-container').toggleClass('show-full')
   });
