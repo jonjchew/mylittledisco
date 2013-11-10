@@ -36,7 +36,7 @@
     font-size: 1.8em;
     display: block;
     position: absolute;
-    top: 30px;
+    top: 14px;
     float: left;
     margin-left: 20px;
     cursor: pointer;
@@ -45,7 +45,7 @@
   #nav-bar {
     margin: 0 auto;
     width: 100%;
-    height: 5em;
+    height: 3em;
     position: fixed;
     background-color: rgba(0,0,0,0.8);
     z-index: 1;
@@ -54,6 +54,10 @@
 
   #nav-bar.absolute {
     position: absolute;
+  }
+
+  #nav-bar h1 {
+    margin-top: 5px;
   }
 
   #stats {
@@ -96,10 +100,9 @@
   }
 
   .song-art {
-    width: 100px;
+    width: 135px;
     margin: 0 auto;
     position: relative;
-    margin-right: 4em;
   }
 
   .song-art-overlay {
@@ -131,7 +134,7 @@
   #player {
     margin: 0 auto;
     width: 100%;
-    height: 5em;
+    height: 3em;
     position: fixed;
     background-color: rgba(0,0,0,0.8);
     bottom: 0px;
@@ -148,11 +151,12 @@
     font-size: .9em;
     width: 60%;
     color: white;
+    padding: 0px 10px 0px 10px;
   }
 
   .player-buttons {
     position: absolute;
-    bottom: 1.5em;
+    bottom: 0.7em;
     font-size: 1em;
     color: white;
     display: block;
