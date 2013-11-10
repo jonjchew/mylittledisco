@@ -1,19 +1,30 @@
-<div id="room" class="well" data-uri="<%= request.host %>:<%= request.port %>/websocket">
-</div>
-
-<h1>Welcome to <span id="room-name"><%= @room.name %><span></h1>
-<h2><i id='play' class="player-buttons fa fa-play"></i> <i id='pause' class="player-buttons fa fa-pause"></i> <i id='next' class="player-buttons fa fa-fast-forward"></i></h2>
-
-
-
-
-<textarea id="search-bar"></textarea>
-
-<div id="results"></div>
-
-<div id="hidden">
-  <div class="song">
-    <span class="song-title"></span>
-    <button class="add-song-button">add this song</button>
+<div class="container">
+  <div id="room" class="well" data-uri="<%= request.host %>:<%= request.port %>/websocket">
   </div>
+
+  <h1>Welcome to <span id="room-name"><%= @room.name %><span></h1>
+  <input type"text" id="search-bar">
+
+  <div id="results"></div>
+
+  <div id="hidden">
+    <div class="song">
+      <span class="song-title"></span>
+      <button class="add-song-button">add this song</button>
+    </div>
+  </div>
+
+
+  <div id="player">
+    <div id='player-controls'>
+      <i id='play' class="player-buttons fa fa-play fa-lg"></i> 
+      <!-- <i id='pause' class="player-buttons fa fa-pause fa-lg"></i>  -->
+      <div>Title  of hte song placeholder this is the song player</div>
+      <i id='next' class="player-buttons fa fa-fast-forward fa-lg"></i>
+    </div>
+  </div>
+
+
+
+
 </div>
