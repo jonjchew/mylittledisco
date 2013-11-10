@@ -5,13 +5,13 @@ class Room < ActiveRecord::Base
 
   def name_on_length
     if name.length > 8
-      errors.add(:name, "can only be eight characters long")
+      errors.add(:name, "can only be eight characters long.")
     end
   end
 
   def name_on_characters
     if name.match(/\W/)
-      errors.add(:name, "can only include letters, numbers, or underscores")
+      errors.add(:name, "can only include letters, numbers, or underscores.")
     end
   end
 
