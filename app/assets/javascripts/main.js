@@ -6,6 +6,7 @@ $(document).ready(function(){
   Ws.init(roomName, socketUrl, useWebSockets);
 
   bindPlayer();
+  Chat.init()
   LandingPage.init()
   focusSearchBar()
 });
@@ -229,7 +230,14 @@ function bindPlayer(){
     $('.container').toggleClass('slide')
     $('.container').toggleClass('fixed')
     $('#nav-bar').toggleClass('absolute')
+    $('#chat-container').removeClass('show')
+    $('#player').toggle()
     window.scrollTo('.container')
+  });
+
+  $('#mobile-menu-chat').on('click',function() {
+    $('.container').toggleClass('slide-left')
+    $('#chat-container').addClass('show')
   });
 
   $('#playlist-toggle').on('click', function() {

@@ -1,11 +1,14 @@
 <div class="playlist-container">
-  <h1> Playlist</h1>
-
+  <h1>Playlist</h1>
   <div id='playlist'>
   </div>
 </div>
 
-
+<div id="chat-container">
+  <h1>Chat</h1>
+  <input type="text" placeholder="Type your message" id="chat-message">
+  <ul id="chat-wrapper"></ul>
+</div>
 
 
 <div class="container">
@@ -15,8 +18,10 @@
     <i id='mobile-menu' class='fa fa-bars'></i>
     <i id='playlist-toggle' class='fa fa-bars fa-lg'></i>
     <h1><span id="room-name"><%= @room.name %><span></h1>
+    <i id='mobile-menu-chat' class='fa fa-comment-o'></i>
 
   </div>
+
 
     <p id='stats'>
       <span id="user-count"><%= @room.users_count %></span>
@@ -31,7 +36,6 @@
     <input placeholder='Add a song to your playlist' type"text" id="search-bar">
     <%= image_tag "ajax-loader.gif", id: "search-bar-loading" %>
   </div>
-  <%= image_tag "discowatermark.png",id: "watermark" %>
 
   <div id="results"></div>
 

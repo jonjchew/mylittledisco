@@ -39,6 +39,10 @@
     margin-left: 280px;
   }
 
+  .slide-left {
+    margin-left: -260px;
+  }
+
   .fixed{
     position: fixed;
   }
@@ -53,9 +57,18 @@
     cursor: pointer;
   }
 
+  #mobile-menu-chat {
+    font-size: 1.8em;
+    display: block;
+    position: absolute;
+    top: 11px;
+    right: 20px;
+    cursor: pointer;
+  }
+
   #nav-bar {
     margin: 0 auto;
-    width: 100%;
+    width: 320px;
     height: 3em;
     position: fixed;
     background-color: rgba(0,0,0,0.8);
@@ -78,12 +91,13 @@
   }
 
   #search-bar {
+    margin: 0 auto;
+    position: relative;
+    /*top: 70px;*/
     font-family: 'Lato', sans-serif;
     font-size: 1em;
     width: 90%;
     height: 2em;
-    position: relative;
-    margin: 0 auto;
     text-indent: 1em;
     background-color: rgb(241, 241, 241);
     border: none;
@@ -153,7 +167,7 @@
   /*player */
   #player {
     margin: 0 auto;
-    width: 100%;
+    width: 320px;
     height: 3em;
     position: fixed;
     background-color: rgba(0,0,0,0.8);
@@ -305,6 +319,60 @@
     color: white;
   }
 
+  /***
+   * Chat
+   */
+   #chat-container {
+    position: absolute;
+    top: 0px;
+    background-color: white;
+    width: 320px;
+    height: 100%;
+    z-index: -2;
+    background-color: rgb(241, 241, 241);
+
+  }
+
+  #chat-container.show {
+    display: block;
+    z-index: -1;
+  }
+
+  #chat-container h1 {
+    padding-left: 1em;
+    width: 100%;
+    text-align: center;
+  }
+
+  #chat-container input {
+    margin: 0 auto;
+    width: 70%;
+    margin-left: 23%;
+    height: 2em;
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    text-indent: 1em;
+    border: none;
+
+  }
+  #chat-wrapper {
+    margin-left: 10px;
+    padding: 0;
+  }
+
+
+  #chat-wrapper {
+    padding-left: 4em;
+  }
+  #chat-wrapper li {
+    list-style: none;
+  }
+
+  #chat-wrapper li span {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
   #search-wrapper {
     margin-top: 30px;
   }
