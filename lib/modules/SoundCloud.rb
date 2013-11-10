@@ -8,7 +8,7 @@ module SoundCloud
     search_responses = make_SC_call('/tracks',:q => query_string)
     search_responses = convert_to_array_of_hashes(search_responses)
     search_responses = pluck_non_streamable(search_responses)
-    sort_by_favorites(search_responses)
+    # sort_by_favorites(search_responses)
   end
 
   def make_SC_call(query,params)
