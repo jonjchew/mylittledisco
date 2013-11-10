@@ -14,6 +14,8 @@ WebsocketRails::EventMap.describe do
   subscribe :sync_new_user,         to: PartiesController, with_method: :sync_new_user
   subscribe :synchronize_channel,   to: PartiesController, with_method: :synchronize_channel
 
+  subscribe :send_message,          to: PartiesController, with_method: :send_message
+
   subscribe :client_connected,      to: PartiesController, with_method: :client_connected
   subscribe :play_song,             to: PartiesController, with_method: :play_song
   subscribe :pause_song,            to: PartiesController, with_method: :pause_song
