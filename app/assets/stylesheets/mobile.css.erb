@@ -40,7 +40,7 @@
   }
 
   .slide-left {
-    margin-left: -280px;
+    margin-left: -260px;
   }
 
   .fixed{
@@ -225,7 +225,6 @@
     position: absolute;
     top: 0px;
     background-color: rgb(241, 241, 241);
-    /*width: 320px;*/
     width: 320px;
     min-height: 100%;
     margin-left: 0;
@@ -330,21 +329,40 @@
     width: 320px;
     height: 100%;
     z-index: -2;
+    background-color: rgb(241, 241, 241);
+
   }
 
-  #chat-container h2 {
+  #chat-container.show {
+    z-index: -1;
+  }
+
+  #chat-container h1 {
+    padding-left: 1em;
+    width: 100%;
     text-align: center;
   }
 
-  #chat-container textarea {
-    width: 80%;
+  #chat-container input {
     margin: 0 auto;
+    width: 70%;
+    margin-left: 23%;
+    height: 2em;
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    text-indent: 1em;
+    border: none;
+
   }
   #chat-wrapper {
     margin-left: 10px;
     padding: 0;
   }
 
+
+  #chat-wrapper {
+    padding-left: 4em;
+  }
   #chat-wrapper li {
     list-style: none;
   }
