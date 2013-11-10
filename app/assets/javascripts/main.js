@@ -8,6 +8,10 @@ $(document).ready(function(){
   bindPlayer();
 });
 
+var updateUserCount = function(data) {
+  $('#user-count').text(data["users"])
+}
+
 var Ws = {
   init: function(channelName, url, useWebSockets) {
     Ws.channelName = channelName
@@ -29,7 +33,7 @@ var Ws = {
     Ws.channel.bind('play_song', AudioPlayer.play)
     Ws.channel.bind('pause_song', AudioPlayer.pause)
     Ws.channel.bind('next_song', AudioPlayer.next_song)
-
+    Ws.channel.bind('update_user_count', updateUserCount)
     Ws.channel.bind('add_song', function(data){
       Playlist.add(data.song)
     })
@@ -92,7 +96,12 @@ var Room = {
 
       Playlist.queue = data["room_info"]["queue"]
       Playlist.displayPlaylist()
+
     }
+
+    Ws.dispatcher.trigger('update_user_count', {
+        room_number: Ws.channelName
+    })
   }
 }
 
