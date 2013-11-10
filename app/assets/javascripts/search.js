@@ -9,7 +9,13 @@ var Search = {
   hitSoundCloud: function(inputEvent) {
     clearTimeout(Search.timeout)
     var query = inputEvent.target.value
-    Search.timeout = setTimeout(function() { Search.getSoundCloudData(query) },1000)
+
+    if (query) {
+      Search.timeout = setTimeout(function() { Search.getSoundCloudData(query) },1000)
+    }
+    else {
+      Search.clearResults()
+    }
   },
   getSoundCloudData: function(queryString) {
     $.ajax({
