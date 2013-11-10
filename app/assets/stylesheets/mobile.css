@@ -21,6 +21,8 @@ body {
 
 #results {
   margin-top: 2em;
+  float: left;
+  margin-bottom: 5em;
 }
 
 .song {
@@ -30,6 +32,10 @@ body {
   float: left;
   font-size: 0.85em;
   margin-bottom: 1em;
+}
+
+.song img {
+  cursor: pointer;
 }
 
 /*player */

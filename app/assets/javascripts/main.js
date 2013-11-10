@@ -78,9 +78,10 @@ var Room = {
 var AudioPlayer = {
   song: new Audio,
 
-  set_current_song: function(song_url) {
-    AudioPlayer.song.src = song_url
+  set_current_song: function(song_object) {
+    AudioPlayer.song.src = song_object.MLDStream
     AudioPlayer.song.load()
+    AudioPlayer.setSongText(song_object.title)
     AudioPlayer.bindEnd()
   },
   play: function() {
@@ -93,13 +94,16 @@ var AudioPlayer = {
     AudioPlayer.song.src = null
     if(Playlist.queue.length!=0){
       song = Playlist.pop_first_song()
-      AudioPlayer.set_current_song(song.MLDStream)
+      AudioPlayer.set_current_song(song)
       AudioPlayer.play()
       Playlist.displayPlaylist()
     }
   },
   bindEnd: function() {
     $(AudioPlayer.song).bind('ended', AudioPlayer.next_song)
+  },
+  setSongText: function(text) {
+    $('#current-song-title').text(text)
   }
 };
 
@@ -108,7 +112,7 @@ var Playlist = {
 
   add: function(song_object) {
     if(AudioPlayer.song.src===""){
-      AudioPlayer.set_current_song(song_object.MLDStream)
+      AudioPlayer.set_current_song(song_object)
       AudioPlayer.play()
     }
     else {

@@ -37,7 +37,13 @@ var Search = {
   appendSong: function(songHash) {
     var song = $('#hidden .song').clone()
     song.find('.song-title').text(songHash.title)
-    song.find('.add-song-button').val(songHash.id).on('click', Ws.add_song)
+    if(songHash.artwork_url!=null){
+      song.find('.song-art').html('<img src="' + songHash.artwork_url + '"">')
+    }
+    else {
+      song.find('.song-art').html('<img src="http://i1.sndcdn.com/artworks-000033564444-hama0x-large.jpg?3eddc42">')
+    }
+    song.find('.song-art img').val(songHash.id).on('click', Ws.add_song)
     $('#results').append(song)
   },
   getSong: function(id) {
