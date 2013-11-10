@@ -305,7 +305,12 @@ section {
   display: block;
 }
 
+
 #landing-page-buttons {
   display: inline-block;
   margin-top: 50px;
+}
+
+#watermark {
+  margin-top: 4em;
 }
