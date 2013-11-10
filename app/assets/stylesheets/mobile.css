@@ -22,6 +22,9 @@
     transition:all 0.8s ease-in-out;
   }
 
+  #playlist-toggle {
+  display: none;
+  }
 
   .slide {
     margin-left: 320px;
@@ -170,6 +173,7 @@
   }
 
   #next {
+    position: absolute;
     width: 10%;
   }
 
@@ -187,6 +191,7 @@
     background-color: rgb(241, 241, 241);
     width: 360px;
     min-height: 100%;
+    margin-left: 0;
     z-index: -1;
   }
 

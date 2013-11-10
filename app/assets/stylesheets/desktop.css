@@ -196,11 +196,11 @@ body {
 .playlist-container {
   position: absolute;
   overflow-y: scroll;
+  margin-left: -20em;
   width: 20em;
   height: 33em;
   top: 6em;
   background-color: rgba(241, 241, 241, 0.98);
-  margin-left: -18em;
   z-index: 1;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
@@ -220,12 +220,18 @@ body {
 
 
 #playlist-toggle {
-  display: inline-block;
+ /* display: inline-block;
   float: right;
   margin-right: .4em;
   font-size: .6em;
   line-height: 1.7em;
+  cursor: pointer;*/
+  display: inline-block;
+  position: absolute;
+  top: 30px;
+  margin-left: 20px;
   cursor: pointer;
+  line-height: 1.5em;
 }
 
 .fa-times-circle {
@@ -238,6 +244,10 @@ body {
   border-bottom: 1px;
   border-bottom-style: solid;
   border-color: #ccc;
+}
+
+.playlist-image {
+  margin-left: .5em;
 }
 .song-title {
   display: inline-block;
