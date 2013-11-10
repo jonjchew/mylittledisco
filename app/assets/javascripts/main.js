@@ -65,9 +65,6 @@ var Ws = {
 
 var Room = {
   getRoomState: function() {
-
-
-
     return {
       currentSong: AudioPlayer.currentSong,
       currentTime: AudioPlayer.song.currentTime,
