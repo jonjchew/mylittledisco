@@ -8,7 +8,7 @@ body {
   float: left;
   background: gray;
   width: 360px;
-  min-height: 450px;
+  min-height: 950px;
   text-align: center;
   position: relative;
   -webkit-transition:all 0.8s ease-in-out;
@@ -55,6 +55,8 @@ body {
   height: 2em;
   position: relative;
   margin: 0 auto;
+  text-indent: 1em;
+  border: none;
 }
 
 /*search results*/
@@ -96,10 +98,15 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.song img {
+.song-art-overlay {
   cursor: pointer;
 }
 
+.song-art-overlay.disabled {
+  opacity: 0.5;
+  cursor: auto;
+  pointer-events:none;
+}
 /*player */
 #player {
   margin: 0 auto;
@@ -149,12 +156,37 @@ body {
 
 
 /*playlist */
-.playlist {
+.playlist-container {
   position: absolute;
   top: 0px;
-  background-color: red;
+  background-color: white;
   width: 360px;
   height: 100%;
   z-index: -1;
-
 }
+
+.playlist-container h1 {
+  text-align: center;
+}
+
+.fa-times-circle {
+  cursor: pointer;
+  color: gray;
+}
+#playlist {
+  margin: 1em;
+}
+
+.playlist-item {
+  margin-top: 1em;
+  border-bottom: 1px;
+  border-bottom-style: solid;
+  border-color: #ccc;
+}
+.song-title {
+  display: inline-block;
+  width: 65%;
+  margin-left: .5em;
+  font-size: .8em;
+}
+

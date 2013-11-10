@@ -53,7 +53,7 @@ var Ws = {
   },
 
   add_song: function(e) {
-    $(e.target).css('opacity','0.5')
+    $(e.target).addClass('disabled')
     var track_id = e.target.value
     var song_object = Search.getSong(track_id)
     Ws.dispatcher.trigger('add_song', {
@@ -164,6 +164,14 @@ var Playlist = {
     var $item = $('#hidden .playlist-item').clone()
     $item.find('.song-title').text(song_object.title)
     $item.find('.remove-song-button').val(song_object.id).on('click',Playlist.removeSongCallback)
+
+    if(song_object.artwork_url!=null){
+      barge_size_image = song_object.artwork_url.replace(/large/,"badge")
+      $item.find('.playlist-image').attr('src', barge_size_image)
+    }
+    else {
+      $item.find('.playlist-image').attr('src', "http://i1.sndcdn.com/artworks-000033564444-hama0x-large.jpg?3eddc42")
+    }
     return $item
   },
   removeSongCallback: function(clickEvent) {
