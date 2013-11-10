@@ -9,6 +9,9 @@ class PartiesController < WebsocketRails::BaseController
 
   def delete_user
     puts "User left"
+    WebsocketRails[connection_store[:room_number]].trigger(:user_left, {
+      :user_name => connection_store[connection_store[:room_number]]
+    })
   end
 
   def sync_new_user
@@ -21,7 +24,7 @@ class PartiesController < WebsocketRails::BaseController
     }))
 
     connection_store[room_number] = __get_next_guest_name(room_number)
-    WebsocketRails[message[:room_number]].trigger(:new_user, {
+    WebsocketRails[connection_store[:room_number]].trigger(:new_user, {
       :user_name => connection_store[room_number]
     })
   end
