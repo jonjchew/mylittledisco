@@ -227,7 +227,12 @@ function bindPlayer(){
     $('#nav-bar').toggleClass('absolute')
     window.scrollTo('.container')
   });
+
+  $('#playlist-toggle').on('click', function() {
+    $('.playlist-container').toggleClass('show-full')
+  });
 }
+
 
 var LandingPage = {
   init: function(){
