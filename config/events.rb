@@ -21,4 +21,6 @@ WebsocketRails::EventMap.describe do
   subscribe :add_song,              to: PartiesController, with_method: :add_song
   subscribe :remove_song,           to: PartiesController, with_method: :remove_song
   subscribe :client_disconnected,   to: PartiesController, with_method: :delete_user
+  subscribe :update_user_count,     to: PartiesController, with_method: :update_user_count
+
 end
