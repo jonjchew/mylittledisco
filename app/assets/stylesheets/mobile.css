@@ -6,11 +6,11 @@ body {
 }
 .container {
   float: left;
-  background: white;
+  background: gray;
   width: 360px;
+  min-height: 450px;
   text-align: center;
   position: relative;
-  z-index: 1;
   -webkit-transition:all 0.8s ease-in-out;
   -moz-transition:all 0.8s ease-in-out;
   -o-transition:all 0.8s ease-in-out;
@@ -32,12 +32,12 @@ body {
 
 #nav-bar {
   background-color: rgba(0,0,0,0.8);
-  position: fixed;
+  position: absolute;
   color: white;
   width: 100%;
   top: 0px;
-  z-index: 2;
 }
+
 
 #nav-bar h1 {
 
@@ -124,7 +124,7 @@ body {
 }
 
 .player-buttons {
-  position: fixed;
+  position: absolute;
   bottom: 1.5em;
   font-size: 1em;
   color: white;
@@ -146,10 +146,15 @@ body {
   width: 10%;
 }
 
+
+
+/*playlist */
 .playlist {
   position: absolute;
   top: 0px;
   background-color: red;
-  width: 100%;
+  width: 360px;
   height: 100%;
+  z-index: -1;
+
 }
