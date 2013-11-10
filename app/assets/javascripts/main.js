@@ -170,12 +170,4 @@ function bindPlayer(){
       room_number: Ws.roomId
     });
   });
-  $('.add-song-button').on('click', function() {
-    // var track_id = $('#add-song-field').val()
-    // $('#add-song-field').val('')
-    // Ws.dispatcher.trigger('add_song', {
-    //   room_number: Ws.roomId,
-    //   song: track_id
-    // })
-  });
 }
