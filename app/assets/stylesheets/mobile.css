@@ -173,7 +173,8 @@
   }
 
   #next {
-    position: absolute;
+    position: fixed;
+    right: 20px;
     width: 10%;
   }
 
