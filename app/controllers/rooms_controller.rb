@@ -10,7 +10,12 @@ class RoomsController < ApplicationController
     redirect_to room
   end
 
-  def show
+  def join
+    @room = Room.find_by name: params[:room][:name]
+    redirect_to @room
+  end
+
+   def show
     @room = Room.find_by name: params[:name]
   end
 

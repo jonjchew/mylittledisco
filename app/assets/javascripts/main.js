@@ -6,6 +6,7 @@ $(document).ready(function(){
   Ws.init(roomName, socketUrl, useWebSockets);
   Chat.init();
   bindPlayer();
+  LandingPage.init()
 });
 
 var updateUserCount = function(data) {
@@ -222,10 +223,32 @@ function bindPlayer(){
   });
   $('#mobile-menu').on('click', function() {
     $('.container').toggleClass('slide')
-    // $(this.find('.song-art-overlay')).css('opacity','0.8')
   });
 
   $('#mobile-menu-chat').on('click', function() {
     $('.container').toggleClass('slide-left')
   });
+}
+
+var LandingPage = {
+  init: function(){
+    LandingPage.bindCreateRoom()
+    LandingPage.bindJoinRoom()
+  },
+  bindCreateRoom: function() {
+    $('#create-room-button').one('click', LandingPage.revealCreateInput)
+  },
+  revealCreateInput: function(e) {
+    e.preventDefault()
+    $('#create-room-acc').addClass('reveal')
+    $('#create-room-input').focus()
+  },
+  bindJoinRoom: function() {
+    $('#join-room-button').one('click', LandingPage.revealJoinInput)
+  },
+  revealJoinInput: function(e) {
+    e.preventDefault()
+    $('#join-room-acc').addClass('reveal')
+    $('#join-room-input').focus()
+  }
 }

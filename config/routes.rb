@@ -5,6 +5,7 @@ Mylittledisco::Application.routes.draw do
   get '/rooms/:name', to: 'rooms#show', as: "room"
 
   post "/search", to: 'songs#searchSoundCloud'
+  post "/join", to: 'rooms#join'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
