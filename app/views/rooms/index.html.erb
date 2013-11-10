@@ -1,6 +1,6 @@
 
 <% if @rooms %>
-<h2>Rooms to join</h2>
+  <h2>Rooms to join</h2>
   <% @rooms.each do |room| %>
     <%= link_to room.name, room_path(room) %> number of users: <%= room.users_count %><br>
   <% end %>
