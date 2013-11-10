@@ -7,12 +7,24 @@ class RoomsController < ApplicationController
 
   def create
     room = Room.find_or_create_by(room_params)
-    redirect_to room
+
+    if room.persisted?
+      redirect_to room
+    else
+      flash[:error] = room.errors.full_messages[0]
+      redirect_to root_path
+    end
+
   end
 
   def join
     @room = Room.find_by name: params[:room][:name]
-    redirect_to @room
+    if @room
+      redirect_to @room
+    else
+      flash[:error] = "That room doesn't exist yet."
+      redirect_to root_path
+    end
   end
 
    def show

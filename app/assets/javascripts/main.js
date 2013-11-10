@@ -7,6 +7,7 @@ $(document).ready(function(){
   Chat.init();
   bindPlayer();
   LandingPage.init()
+  focusSearchBar()
 });
 
 var updateUserCount = function(data) {
@@ -84,7 +85,7 @@ var Room = {
       var beforeLoad = Date.now()
       AudioPlayer.set_current_song(data["room_info"]["currentSong"])
 
-      AudioPlayer.song.onloadeddata = function() {
+      $( AudioPlayer.song ).on('loadeddata', function() {
         var afterLoad = Date.now();
         var loadTime = (afterLoad - beforeLoad)/1000
 
@@ -93,7 +94,7 @@ var Room = {
           AudioPlayer.song.currentTime += loadTime
           AudioPlayer.play()
         }
-      }
+      })
 
       Playlist.queue = data["room_info"]["queue"]
       Playlist.displayPlaylist()
@@ -223,6 +224,9 @@ function bindPlayer(){
   });
   $('#mobile-menu').on('click', function() {
     $('.container').toggleClass('slide')
+    $('.container').toggleClass('fixed')
+    $('#nav-bar').toggleClass('absolute')
+    window.scrollTo('.container')
   });
 
   $('#mobile-menu-chat').on('click', function() {
@@ -250,5 +254,11 @@ var LandingPage = {
     e.preventDefault()
     $('#join-room-acc').addClass('reveal')
     $('#join-room-input').focus()
+  }
+}
+
+function focusSearchBar() {
+  if($('#search-bar').length>0){
+    $('#search-bar').focus()
   }
 }
