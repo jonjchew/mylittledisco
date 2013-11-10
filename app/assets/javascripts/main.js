@@ -137,7 +137,7 @@ var Playlist = {
     var songId = clickEvent.target.value
 
     Ws.dispatcher.trigger('remove_song', {
-      room_number: Ws.roomId,
+      room_number: Ws.channelName,
       songId: songId
     })
   },
@@ -157,17 +157,17 @@ var Playlist = {
 function bindPlayer(){
   $('#play').on('click', function(){
     Ws.dispatcher.trigger('play_song', {
-      room_number: Ws.roomId
+      room_number: Ws.channelName
     });
   });
   $('#pause').on('click', function(){
     Ws.dispatcher.trigger('pause_song', {
-      room_number: Ws.roomId
+      room_number: Ws.channelName
     });
   });
   $('#next').on('click', function(){
     Ws.dispatcher.trigger('next_song', {
-      room_number: Ws.roomId
+      room_number: Ws.channelName
     });
   });
 }
