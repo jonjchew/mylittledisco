@@ -152,6 +152,7 @@ var Playlist = {
 
   add: function(song_object) {
     if(AudioPlayer.song.src===""){
+      console.log('hit')
       AudioPlayer.set_current_song(song_object)
       AudioPlayer.play()
     }
