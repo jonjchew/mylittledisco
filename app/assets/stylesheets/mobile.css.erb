@@ -39,6 +39,10 @@
     margin-left: 280px;
   }
 
+  .slide-left {
+    margin-left: -320px;
+  }
+
   .fixed{
     position: fixed;
   }
@@ -50,6 +54,15 @@
     top: 11px;
     float: left;
     margin-left: 20px;
+    cursor: pointer;
+  }
+
+  #mobile-menu-chat {
+    font-size: 1.8em;
+    display: block;
+    position: absolute;
+    top: 11px;
+    right: 20px;
     cursor: pointer;
   }
 
@@ -304,5 +317,40 @@
   .landing-page-container .error {
     margin-top: 10px;
     color: white;
+  }
+
+  /***
+   * Chat
+   */
+   #chat-container {
+    position: absolute;
+    top: 0px;
+    background-color: white;
+    width: 320px;
+    height: 100%;
+    z-index: -2;
+  }
+
+  #chat-container h2 {
+    text-align: center;
+  }
+
+  #chat-container textarea {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  #chat-wrapper {
+    margin-left: 10px;
+    padding: 0;
+  }
+
+  #chat-wrapper li {
+    list-style: none;
+  }
+
+  #chat-wrapper li span {
+    font-weight: bold;
+    margin-right: 5px;
   }
 }
