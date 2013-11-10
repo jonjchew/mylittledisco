@@ -1,4 +1,5 @@
 body {
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -10,15 +11,22 @@ body {
   width: 360px;
   min-height: 950px;
   text-align: center;
-  position: relative;
+  position: absolute;
   color: white;
   -webkit-transition:all 0.8s ease-in-out;
   -moz-transition:all 0.8s ease-in-out;
   -o-transition:all 0.8s ease-in-out;
   transition:all 0.8s ease-in-out;
 }
+
+
 .slide {
   margin-left: 320px;
+}
+
+
+.fixed{
+  position: fixed;
 }
 
 #mobile-menu {
@@ -32,16 +40,17 @@ body {
 }
 
 #nav-bar {
-  background-color: rgba(0,0,0,0.8);
-  position: absolute;
-  color: white;
+  margin: 0 auto;
   width: 100%;
+  height: 5em;
+  position: fixed;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 1;
   top: 0px;
 }
 
-
-#nav-bar h1 {
-
+#nav-bar.absolute {
+  position: absolute;
 }
 
 #stats {
@@ -164,25 +173,29 @@ body {
 
 
 /*playlist */
+
+#playlist {
+  margin: 1em;
+}
+
 .playlist-container {
   position: absolute;
   top: 0px;
-  background-color: white;
+  background-color: rgb(241, 241, 241);
   width: 360px;
-  height: 100%;
+  min-height: 100%;
   z-index: -1;
 }
 
 .playlist-container h1 {
   text-align: center;
+  margin-bottom: 2em;
 }
+
 
 .fa-times-circle {
   cursor: pointer;
   color: gray;
-}
-#playlist {
-  margin: 1em;
 }
 
 .playlist-item {

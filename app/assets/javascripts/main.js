@@ -213,6 +213,8 @@ function bindPlayer(){
   });
   $('#mobile-menu').on('click', function() {
     $('.container').toggleClass('slide')
-    // $(this.find('.song-art-overlay')).css('opacity','0.8')
+    $('.container').toggleClass('fixed')
+    $('#nav-bar').toggleClass('absolute')
+    window.scrollTo('.container')
   });
 }
