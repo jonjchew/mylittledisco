@@ -4,7 +4,7 @@ $(document).ready(function(){
       useWebSockets = true;
 
   Ws.init(roomName, socketUrl, useWebSockets);
-
+  Chat.init();
   bindPlayer();
 });
 
@@ -56,7 +56,7 @@ var Ws = {
     var track_id = e.target.value
     var song_object = Search.getSong(track_id)
     Ws.dispatcher.trigger('add_song', {
-      room_number: Ws.roomId,
+      room_number: Ws.channelName,
       song: song_object
     })
   }
