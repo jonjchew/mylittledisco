@@ -81,10 +81,17 @@ var Room = {
     if (AudioPlayer.song.src === "" && data["room_info"]["currentSong"] ) {
       AudioPlayer.set_current_song(data["room_info"]["currentSong"])
 
-      setTimeout(function() {
-        AudioPlayer.song.currentTime = data["room_info"]["currentTime"] + 1
-        if (!data["room_info"]["paused"]) { AudioPlayer.play() }
-      }, 1000)
+      var beforeLoad = new Date
+      AudioPlayer.song.onloadeddata = function() {
+        var afterLoad = new Date
+        var loadTime = (afterLoad.getMilliseconds() - beforeLoad.getMilliseconds())/1000
+
+        AudioPlayer.song.currentTime = data["room_info"]["currentTime"]
+        if (!data["room_info"]["paused"]) {
+          AudioPlayer.song.currentTime += loadTime
+          AudioPlayer.play()
+        }
+      }
 
       Playlist.queue = data["room_info"]["queue"]
       Playlist.displayPlaylist()
