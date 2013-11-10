@@ -7,6 +7,7 @@ $(document).ready(function(){
 
   bindPlayer();
   LandingPage.init()
+  focusSearchBar()
 });
 
 var updateUserCount = function(data) {
@@ -112,8 +113,10 @@ var AudioPlayer = {
 
   set_current_song: function(song_object) {
     AudioPlayer.currentSong = song_object
+    AudioPlayer.song = new Audio
     AudioPlayer.song.src = song_object.MLDStream
     AudioPlayer.song.load()
+
     AudioPlayer.setSongText(song_object.title)
     AudioPlayer.bindEnd()
   },
@@ -254,5 +257,11 @@ var LandingPage = {
     e.preventDefault()
     $('#join-room-acc').addClass('reveal')
     $('#join-room-input').focus()
+  }
+}
+
+function focusSearchBar() {
+  if($('#search-bar').length>0){
+    $('#search-bar').focus()
   }
 }
