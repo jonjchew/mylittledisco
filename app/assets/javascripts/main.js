@@ -78,9 +78,9 @@ var Room = {
 
   updateRoomState: function(data) {
 
-    if (AudioPlayer.song.src === "") {
+    if (AudioPlayer.song.src === "" && data["room_info"]["currentSong"] ) {
       AudioPlayer.set_current_song(data["room_info"]["currentSong"])
-      console.log(AudioPlayer.song.src)
+
       setTimeout(function() {
         AudioPlayer.song.currentTime = data["room_info"]["currentTime"] + 1
         if (!data["room_info"]["paused"]) { AudioPlayer.play() }
