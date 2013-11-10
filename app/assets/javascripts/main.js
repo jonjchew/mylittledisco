@@ -223,6 +223,9 @@ function bindPlayer(){
   });
   $('#mobile-menu').on('click', function() {
     $('.container').toggleClass('slide')
+    $('.container').toggleClass('fixed')
+    $('#nav-bar').toggleClass('absolute')
+    window.scrollTo('.container')
   });
 }
 
