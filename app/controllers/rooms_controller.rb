@@ -12,7 +12,11 @@ class RoomsController < ApplicationController
 
   def join
     @room = Room.find_by name: params[:room][:name]
-    redirect_to @room
+    if @room
+      redirect_to @room
+    else
+      redirect_to root_path
+    end
   end
 
    def show
