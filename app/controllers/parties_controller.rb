@@ -51,4 +51,9 @@ class PartiesController < WebsocketRails::BaseController
     WebsocketRails[message[:room_number]].trigger(:remove_song, {songId: message[:songId]})
   end
 
+  def update_user_count
+    user_count = WebsocketRails[message[:room_number]].subscribers.count
+    WebsocketRails[message[:room_number]].trigger(:update_user_count, {users: user_count})
+  end
+
 end

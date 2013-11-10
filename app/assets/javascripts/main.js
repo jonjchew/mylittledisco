@@ -8,6 +8,10 @@ $(document).ready(function(){
   bindPlayer();
 });
 
+var updateUserCount = function(data) {
+  $('#user-count').text(data["users"])
+}
+
 var Ws = {
   init: function(channelName, url, useWebSockets) {
     Ws.channelName = channelName
