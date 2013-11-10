@@ -48,7 +48,7 @@ var Ws = {
     })
 
     Ws.channel.bind('remove_song', function(data){
-      Playlist.removeSong(data.songId)
+      Playlist.removeSong(parseInt(data.songId))
     })
   },
 
@@ -160,20 +160,20 @@ var Playlist = {
   displaySong: function(song_object) {
     var $item = $('#hidden .playlist-item').clone()
     $item.find('.song-title').text(song_object.title)
-    $item.find('.remove-song-button').val(song_object.id).on('click',Playlist.removeSongCallback)
+    $item.find('.remove-song-button').attr('data-id',song_object.id).on('click',Playlist.removeSongCallback)
 
     if(song_object.artwork_url!=null){
       barge_size_image = song_object.artwork_url.replace(/large/,"badge")
       $item.find('.playlist-image').attr('src', barge_size_image)
     }
     else {
-      $item.find('.playlist-image').attr('src', "http://i1.sndcdn.com/artworks-000033564444-hama0x-large.jpg?3eddc42")
+      $item.find('.playlist-image').attr('src', "http://i1.sndcdn.com/artworks-000033564444-hama0x-badge.jpg?3eddc42")
     }
     return $item
   },
   removeSongCallback: function(clickEvent) {
 
-    var songId = clickEvent.target.value
+    var songId = $(event.target).attr('data-id')
 
     Ws.dispatcher.trigger('remove_song', {
       room_number: Ws.channelName,
