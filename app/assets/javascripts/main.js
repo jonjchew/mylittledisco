@@ -82,7 +82,7 @@ var Room = {
 
       setTimeout(function() {
         AudioPlayer.song.currentTime = data["room_info"]["currentTime"] + 0.5
-        AudioPlayer.play()
+        if (!data["room_info"]["paused"]) { AudioPlayer.play() }
       }, 500)
 
       Playlist.queue = data["room_info"]["queue"]
