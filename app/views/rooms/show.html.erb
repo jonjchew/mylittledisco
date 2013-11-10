@@ -1,11 +1,14 @@
 <div class="container">
   <div id="room" class="well" data-uri="<%= request.host %>:<%= request.port %>/websocket">
   </div>
+  <div id='nav-bar'>
+    <i id='mobile-menu' class='fa fa-bars'></i>
+    <h1><span id="room-name"><%= @room.name %><span></h1>
 
-  <h1><span id="room-name"><%= @room.name %><span></h1>
-  <% if @room.users_count > 1 %>
-    <p><%= @room.users_count %> listeners currently in this room.</p>
-  <% end %>
+    <% if @room.users_count > 1 %>
+      <p id='stats'><%= @room.users_count %> listeners currently in this room.</p>
+    <% end %>
+  </div>
   <input placeholder='Add a song to your playlist' type"text" id="search-bar">
 
   <div id="results"></div>

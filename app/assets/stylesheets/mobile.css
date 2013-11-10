@@ -6,9 +6,37 @@ body {
 .container {
   width: 360px;
   text-align: center;
+  position: relative;
+}
+
+#mobile-menu {
+  font-size: 2.2em;
+  display: block;
+  position: absolute;
+  top: 25px;
+  float: left;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+#nav-bar {
+  background-color: rgba(0,0,0,0.8);
+  position: fixed;
+  color: white;
+  width: 100%;
+  top: 0px;
+}
+
+#nav-bar h1 {
+
+}
+
+#stats {
+  font-size: 0.6em;
 }
 
 #search-bar {
+  top: 110px;
   font-family: 'Lato', sans-serif;
   font-size: 1em;
   width: 90%;
