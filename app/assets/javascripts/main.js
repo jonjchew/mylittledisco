@@ -84,7 +84,7 @@ var Room = {
       var beforeLoad = Date.now()
       AudioPlayer.set_current_song(data["room_info"]["currentSong"])
 
-      AudioPlayer.song.onloadeddata = function() {
+      $(AudioPlayer.song).on('canplaythrough', function() {
         var afterLoad = Date.now();
         var loadTime = (afterLoad - beforeLoad)/1000
 
@@ -93,7 +93,7 @@ var Room = {
           AudioPlayer.song.currentTime += loadTime
           AudioPlayer.play()
         }
-      }
+      })
 
       Playlist.queue = data["room_info"]["queue"]
       Playlist.displayPlaylist()
