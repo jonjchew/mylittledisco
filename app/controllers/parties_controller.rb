@@ -15,10 +15,12 @@ class PartiesController < WebsocketRails::BaseController
     room_number = message[:room_number].to_s
     connection_store[:room_number] = room_number
 
-    WebsocketRails[room_number].subscribers.sample.trigger(WebsocketRails::Event.new(:room_state, {
-      :channel => room_number,
-      :data => {}
-    }))
+    if WebsocketRails[room_number].subscribers.count > 1
+      WebsocketRails[room_number].subscribers.first.trigger(WebsocketRails::Event.new(:room_state, {
+        :channel => room_number,
+        :data => {}
+      }))
+    end
   end
 
   def synchronize_channel
