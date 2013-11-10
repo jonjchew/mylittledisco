@@ -48,7 +48,7 @@ var Ws = {
     })
 
     Ws.channel.bind('remove_song', function(data){
-      Playlist.removeSong(data.songId)
+      Playlist.removeSong(parseInt(data.songId))
     })
   },
 
@@ -66,12 +66,33 @@ var Ws = {
 var Room = {
   getRoomState: function() {
     return {
-      info: 'here'
+      currentSong: AudioPlayer.currentSong,
+      currentTime: AudioPlayer.song.currentTime,
+      queue: Playlist.queue,
+      paused: AudioPlayer.song.paused
     };
   },
 
   updateRoomState: function(data) {
-    console.log(JSON.stringify(data));
+
+    if (AudioPlayer.song.src === "" && data["room_info"]["currentSong"] ) {
+      var beforeLoad = Date.now()
+      AudioPlayer.set_current_song(data["room_info"]["currentSong"])
+
+      AudioPlayer.song.onloadeddata = function() {
+        var afterLoad = Date.now();
+        var loadTime = (afterLoad - beforeLoad)/1000
+
+        AudioPlayer.song.currentTime = data["room_info"]["currentTime"]
+        if (!data["room_info"]["paused"]) {
+          AudioPlayer.song.currentTime += loadTime
+          AudioPlayer.play()
+        }
+      }
+
+      Playlist.queue = data["room_info"]["queue"]
+      Playlist.displayPlaylist()
+    }
   }
 }
 
@@ -80,6 +101,7 @@ var AudioPlayer = {
   song: new Audio,
 
   set_current_song: function(song_object) {
+    AudioPlayer.currentSong = song_object
     AudioPlayer.song.src = song_object.MLDStream
     AudioPlayer.song.load()
     AudioPlayer.setSongText(song_object.title)
@@ -138,7 +160,7 @@ var Playlist = {
   displaySong: function(song_object) {
     var $item = $('#hidden .playlist-item').clone()
     $item.find('.song-title').text(song_object.title)
-    $item.find('.remove-song-button').val(song_object.id).on('click',Playlist.removeSongCallback)
+    $item.find('.remove-song-button').attr('data-id',song_object.id).on('click',Playlist.removeSongCallback)
 
     if(song_object.artwork_url!=null){
       barge_size_image = song_object.artwork_url.replace(/large/,"badge")
@@ -151,10 +173,10 @@ var Playlist = {
   },
   removeSongCallback: function(clickEvent) {
 
-    var songId = clickEvent.target.value
+    var songId = $(event.target).attr('data-id')
 
     Ws.dispatcher.trigger('remove_song', {
-      room_number: Ws.roomId,
+      room_number: Ws.channelName,
       songId: songId
     })
   },
@@ -177,7 +199,7 @@ function bindPlayer(){
       Ws.dispatcher.trigger('play_song', {
         room_number: Ws.channelName
       });
-  }
+    }
   });
   $('#pause').on('click', function(){
     Ws.dispatcher.trigger('pause_song', {
