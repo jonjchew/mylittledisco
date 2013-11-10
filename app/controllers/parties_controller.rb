@@ -21,6 +21,11 @@ class PartiesController < WebsocketRails::BaseController
         :data => {}
       }))
     end
+
+    connection_store[room_number] = __get_next_guest_name(room_number)
+    WebsocketRails[message[:room_number]].trigger(:new_user, {
+      :user_name => connection_store[room_number]
+    })
   end
 
   def synchronize_channel
@@ -54,6 +59,15 @@ class PartiesController < WebsocketRails::BaseController
   def update_user_count
     user_count = WebsocketRails[message[:room_number]].subscribers.count
     WebsocketRails[message[:room_number]].trigger(:update_user_count, {users: user_count})
+  end
+
+  def __get_next_guest_name(room_number)
+    last_guest_name = connection_store.collect_all(room_number).compact.last
+    if !last_guest_name.nil?
+      next_guest_number = 'Guest' + (/Guest([0-9])+/.match(last_guest_name)[1].to_i + 1).to_s
+    else
+      next_guest_number = 'Guest1'
+    end
   end
 
 end
