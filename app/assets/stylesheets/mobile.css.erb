@@ -31,6 +31,10 @@
     transition:all 0.5s ease-in-out;
   }
 
+  #playlist-toggle {
+  display: none;
+  }
+
   .slide {
     margin-left: 280px;
   }
@@ -204,6 +208,8 @@
   }
 
   #next {
+    position: absolute;
+    right: 20px;
     width: 10%;
   }
 
@@ -221,6 +227,7 @@
     background-color: rgb(241, 241, 241);
     width: 320px;
     min-height: 100%;
+    margin-left: 0;
     z-index: -1;
   }
 
@@ -310,7 +317,6 @@
   .landing-page-container .error {
     margin-top: 10px;
     color: white;
-
   }
 
   /***
