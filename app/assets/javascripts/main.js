@@ -70,7 +70,8 @@ var Room = {
     return {
       currentSong: AudioPlayer.song.src,
       currentTime: AudioPlayer.song.currentTime,
-      queue: Playlist.queue
+      queue: Playlist.queue,
+      paused: AudioPlayer.song.paused
     };
   },
 
