@@ -15,17 +15,18 @@ class PartiesController < WebsocketRails::BaseController
     room_number = message[:room_number].to_s
     connection_store[:room_number] = room_number
 
-    WebsocketRails[room_number].subscribers.first.trigger(WebsocketRails::Event.new(:get_info, {
+    WebsocketRails[room_number].subscribers.sample.trigger(WebsocketRails::Event.new(:room_state, {
       :channel => room_number,
       :data => {}
     }))
   end
 
-  def sync_player
+  def synchronize_channel
     room_number = connection_store[:room_number]
-    current_song_time = message[:current_song_time].to_s
 
-    WebsocketRails[room_number].trigger :sync_player, {current_song_time: current_song_time}
+    WebsocketRails[room_number].trigger :synchronize_room, {
+      room_info: message[:room_info]
+    }
   end
 
   def play_song
