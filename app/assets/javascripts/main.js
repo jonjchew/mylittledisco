@@ -79,12 +79,12 @@ var Room = {
   updateRoomState: function(data) {
 
     if (AudioPlayer.song.src === "" && data["room_info"]["currentSong"] ) {
+      var beforeLoad = Date.now()
       AudioPlayer.set_current_song(data["room_info"]["currentSong"])
 
-      var beforeLoad = new Date
       AudioPlayer.song.onloadeddata = function() {
-        var afterLoad = new Date
-        var loadTime = (afterLoad.getMilliseconds() - beforeLoad.getMilliseconds())/1000
+        var afterLoad = Date.now();
+        var loadTime = (afterLoad - beforeLoad)/1000
 
         AudioPlayer.song.currentTime = data["room_info"]["currentTime"]
         if (!data["room_info"]["paused"]) {
