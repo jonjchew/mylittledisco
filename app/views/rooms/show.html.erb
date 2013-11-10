@@ -4,7 +4,7 @@
 <h1>Welcome to <span id="room-name"><%= @room.name %><span></h1>
 <h2><i id='play' class="player-buttons fa fa-play"></i> <i id='pause' class="player-buttons fa fa-pause"></i> <i id='next' class="player-buttons fa fa-fast-forward"></i></h2>
 
-
+<div id="playlist"></div>
 
 
 <textarea id="search-bar"></textarea>
@@ -16,4 +16,10 @@
     <span class="song-title"></span>
     <button class="add-song-button">add this song</button>
   </div>
+  <div class="playlist-item">
+    <span class="song-title"></span>
+    <button class="remove-song-button">remove this song</button>
+  </div>
 </div>
+
+

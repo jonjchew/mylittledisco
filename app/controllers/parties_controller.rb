@@ -45,4 +45,8 @@ class PartiesController < WebsocketRails::BaseController
     WebsocketRails[message[:room_number]].trigger(:add_song, {song: message[:song]})
   end
 
+  def remove_song
+    WebsocketRails[message[:room_number]].trigger(:remove_song, {songId: message[:songId]})
+  end
+
 end

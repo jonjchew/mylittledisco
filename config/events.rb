@@ -49,5 +49,6 @@ WebsocketRails::EventMap.describe do
   subscribe :pause_song,            to: PartiesController, with_method: :pause_song
   subscribe :next_song,             to: PartiesController, with_method: :next_song
   subscribe :add_song,              to: PartiesController, with_method: :add_song
+  subscribe :remove_song,           to: PartiesController, with_method: :remove_song
   subscribe :client_disconnected,   to: PartiesController, with_method: :delete_user
 end

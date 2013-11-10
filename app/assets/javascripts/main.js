@@ -47,6 +47,9 @@ var Ws = {
       })
     })
 
+    Ws.channel.bind('remove_song', function(data){
+      Playlist.removeSong(data.songId)
+    })
   },
 
   add_song: function(e) {
@@ -89,9 +92,10 @@ var AudioPlayer = {
   next_song: function() {
     AudioPlayer.song.src = null
     if(Playlist.queue.length!=0){
-      song = Playlist.remove_song()
+      song = Playlist.pop_first_song()
       AudioPlayer.set_current_song(song.MLDStream)
       AudioPlayer.play()
+      Playlist.displayPlaylist()
     }
   },
   bindEnd: function() {
@@ -110,9 +114,43 @@ var Playlist = {
     else {
       Playlist.queue.push(song_object)
     }
+    Playlist.displayPlaylist()
   },
-  remove_song: function() {
+  pop_first_song: function() {
     return Playlist.queue.shift()
+  },
+  displayPlaylist: function() {
+    $('#playlist').empty()
+    for(var i=0; i < Playlist.queue.length;i++) {
+      var $item = Playlist.displaySong(Playlist.queue[i])
+      $('#playlist').append($item)
+    }
+  },
+  displaySong: function(song_object) {
+    var $item = $('#hidden .playlist-item').clone()
+    $item.find('.song-title').text(song_object.title)
+    $item.find('.remove-song-button').val(song_object.id).on('click',Playlist.removeSongCallback)
+    return $item
+  },
+  removeSongCallback: function(clickEvent) {
+
+    var songId = clickEvent.target.value
+
+    Ws.dispatcher.trigger('remove_song', {
+      room_number: Ws.roomId,
+      songId: songId
+    })
+  },
+  removeSong: function(songId) {
+    var deletedSongIndex
+
+    for (var i = 0; i < Playlist.queue.length; i++) {
+      if (Playlist.queue[i].id === songId) {
+        deletedSongIndex = i
+      }
+    }
+    Playlist.queue.splice(deletedSongIndex,1)
+    Playlist.displayPlaylist()
   }
 }
 
