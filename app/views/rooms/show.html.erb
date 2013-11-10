@@ -17,7 +17,7 @@
     <h1><span id="room-name"><%= @room.name %><span></h1>
 
   </div>
-  
+
     <p id='stats'>
       <span id="user-count"><%= @room.users_count %></span>
       <% if @room.users_count != 1 %>
@@ -27,8 +27,10 @@
         <% end %>
    currently in this room.</p>
 
-  
-  <input placeholder='Add a song to your playlist' type"text" id="search-bar">
+  <div id="search-wrapper">
+    <input placeholder='Add a song to your playlist' type"text" id="search-bar">
+    <%= image_tag "ajax-loader.gif", id: "search-bar-loading" %>
+  </div>
   <%= image_tag "discowatermark.png",id: "watermark" %>
 
   <div id="results"></div>
@@ -42,7 +44,7 @@
         <div class='song-art-overlay'>
         </div>
       </div>
-      <div class="song-title"> 
+      <div class="song-title">
       </div>
     </div>
     <!-- playlist song template -->
@@ -55,7 +57,7 @@
 
   <div id="player">
     <div id='player-controls'>
-      <i id='play' class="player-buttons fa fa-play fa-lg"></i> 
+      <i id='play' class="player-buttons fa fa-play fa-lg"></i>
       <i id='pause' class="player-buttons fa fa-pause fa-lg"></i>
       <div id='current-song-title'></div>
       <i id='next' class="player-buttons fa fa-fast-forward fa-lg"></i>
