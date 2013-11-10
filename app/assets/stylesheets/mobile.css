@@ -98,13 +98,13 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.song img {
+.song-art-overlay {
   cursor: pointer;
 }
 
 .song-art-overlay.disabled {
   opacity: 0.5;
-  cursor: none;
+  cursor: auto;
   pointer-events:none;
 }
 /*player */
