@@ -3,19 +3,24 @@
   </div>
 
   <h1><span id="room-name"><%= @room.name %><span></h1>
-  <p><%= @room.users_count %> listeners currently in this room.</p>
-  <input type"text" id="search-bar">
+  <% if @room.users_count > 1 %>
+    <p><%= @room.users_count %> listeners currently in this room.</p>
+  <% end %>
+  <input placeholder='Add a song to your playlist' type"text" id="search-bar">
 
   <div id="results"></div>
 
   <div id="hidden">
     <div class="song">
       <div class="song-art">
+        <div class='song-art-image'>
+        </div>
+        <div class='song-art-overlay'>
+        </div>
       </div>
       <div class="song-title">
-        here's a song title
+        
       </div>
-      <button class="add-song-button">add this song</button>
     </div>
   </div>
 
@@ -24,8 +29,8 @@
 <div id="player">
   <div id='player-controls'>
     <i id='play' class="player-buttons fa fa-play fa-lg"></i> 
-    <!-- <i id='pause' class="player-buttons fa fa-pause fa-lg"></i>  -->
-    <div id='current-song-title'>Title  of hte song placeholder this is the song player</div>
+    <i id='pause' class="player-buttons fa fa-pause fa-lg"></i>
+    <div id='current-song-title'></div>
     <i id='next' class="player-buttons fa fa-fast-forward fa-lg"></i>
   </div>
 </div>

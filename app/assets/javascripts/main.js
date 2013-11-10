@@ -53,6 +53,7 @@ var Ws = {
   },
 
   add_song: function(e) {
+    $(e.target).css('opacity','0.5')
     var track_id = e.target.value
     var song_object = Search.getSong(track_id)
     Ws.dispatcher.trigger('add_song', {
@@ -86,9 +87,13 @@ var AudioPlayer = {
   },
   play: function() {
     AudioPlayer.song.play();
+    $('#play').css('display', 'none')
+    $('#pause').css('display', 'block')
   },
   pause: function() {
     AudioPlayer.song.pause();
+    $('#pause').css('display', 'none')
+    $('#play').css('display', 'block')
   },
   next_song: function() {
     AudioPlayer.song.src = null
@@ -160,26 +165,24 @@ var Playlist = {
 
 function bindPlayer(){
   $('#play').on('click', function(){
-    Ws.dispatcher.trigger('play_song', {
-      room_number: Ws.roomId
-    });
+    if(AudioPlayer.song.src!=""){
+      Ws.dispatcher.trigger('play_song', {
+        room_number: Ws.channelName
+      });
+  }
   });
   $('#pause').on('click', function(){
     Ws.dispatcher.trigger('pause_song', {
-      room_number: Ws.roomId
+      room_number: Ws.channelName
     });
   });
   $('#next').on('click', function(){
     Ws.dispatcher.trigger('next_song', {
-      room_number: Ws.roomId
+      room_number: Ws.channelName
     });
   });
-  $('.add-song-button').on('click', function() {
-    // var track_id = $('#add-song-field').val()
-    // $('#add-song-field').val('')
-    // Ws.dispatcher.trigger('add_song', {
-    //   room_number: Ws.roomId,
-    //   song: track_id
-    // })
+  $('.song-art-image').on('click', function() {
+    console.log('hit')
+    // $(this.find('.song-art-overlay')).css('opacity','0.8')
   });
 }
