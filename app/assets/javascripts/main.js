@@ -64,13 +64,29 @@ var Ws = {
 
 var Room = {
   getRoomState: function() {
+
+
+
     return {
-      info: 'here'
+      currentSong: AudioPlayer.song.src,
+      currentTime: AudioPlayer.song.currentTime,
+      queue: Playlist.queue
     };
   },
 
   updateRoomState: function(data) {
-    console.log(JSON.stringify(data));
+
+    if (AudioPlayer.song.src === "") {
+      AudioPlayer.set_current_song(data["room_info"]["currentSong"])
+
+      setTimeout(function() {
+        AudioPlayer.song.currentTime = data["room_info"]["currentTime"] + 0.5
+        AudioPlayer.play()
+      }, 500)
+
+      Playlist.queue = data["room_info"]["queue"]
+      Playlist.displayPlaylist()
+    }
   }
 }
 
