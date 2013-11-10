@@ -132,6 +132,7 @@ var AudioPlayer = {
     if(Playlist.queue.length!=0){
       song = Playlist.pop_first_song()
       AudioPlayer.set_current_song(song)
+      AudioPlayer.song.currentTime = 0
       AudioPlayer.play()
       Playlist.displayPlaylist()
     }
