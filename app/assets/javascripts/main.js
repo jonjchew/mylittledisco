@@ -160,7 +160,7 @@ var Playlist = {
   displaySong: function(song_object) {
     var $item = $('#hidden .playlist-item').clone()
     $item.find('.song-title').text(song_object.title)
-    $item.find('.remove-song-button').val(song_object.id).on('click',Playlist.removeSongCallback)
+    $item.find('.remove-song-button').attr('data-id',song_object.id).on('click',Playlist.removeSongCallback)
 
     if(song_object.artwork_url!=null){
       barge_size_image = song_object.artwork_url.replace(/large/,"badge")
@@ -173,7 +173,7 @@ var Playlist = {
   },
   removeSongCallback: function(clickEvent) {
 
-    var songId = clickEvent.target.value
+    var songId = $(event.target).attr('data-id')
 
     Ws.dispatcher.trigger('remove_song', {
       room_number: Ws.channelName,
