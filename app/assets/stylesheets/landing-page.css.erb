@@ -1,0 +1,97 @@
+  html {
+  	background-image:url(<%= asset_path('320bground.jpg')%> );
+  	background-repeat:repeat-x;
+  	background-color: #23272c;
+  }
+
+  body {
+  	overflow-x: hidden;
+  	background-image:url(<%= asset_path('320bground.jpg')%> );
+  	background-repeat:repeat-x;
+  	background-color: #23272c;
+  	width: 100%;
+  	height: 100%;
+  	margin: 0;
+  	font-family: 'Lato', sans-serif;
+  }
+
+  .landing-page-container {
+  	background-color: #23272c;
+  	width: 100%;
+  	min-height: 600px;
+  	text-align: center;
+  	background-image:url(<%= asset_path('320bground.jpg')%> );
+  	background-repeat:repeat-x;
+  }
+
+  #logo {
+  	margin-top: 23%;
+	margin-right: 3%;
+  	float:right;
+  }
+
+  .landing-page-container input {
+  	margin: 0 auto;
+  	text-indent: 1em;
+  	height: 45px;
+  	font-family: 'Lato', sans-serif;
+  	font-size: 1em;
+  	width: 245px;
+  	position: relative;
+  	margin: 0 auto;
+  	margin-top: 20px;
+  }
+
+  .landing-page-container input[type=text] {
+  	width: 245px;
+  }
+
+  .landing-page-container p {
+  	margin: 0px;
+  }
+
+  section {
+  	height: 0px;
+  	overflow: hidden;
+  	-webkit-transition: all 0.5s ease;
+  	-moz-transition: all 0.5s ease;
+  	-ms-transition: all 0.5s ease;
+  	-o-transition: all 0.5s ease;
+  	transition: all 0.5s ease;
+  }
+
+  .reveal {
+  	height: 70px;
+  }
+
+  .landing-page-container input.reveal {
+  	display: block;
+  }
+
+  #landing-page-buttons {
+  	display: inline-block;
+  	margin-top: 25%;
+  }
+
+  .button-section {
+  	display: inline;
+  }
+
+  .landing-page-container .error {
+  	margin-top: 10px;
+  	color: white;
+
+  }
+@media screen and (max-width: 850px) {
+
+  #logo {
+  	float:none;
+  }
+
+  #landing-page-buttons {
+  	margin-right: 0;
+  	margin-top: 5%;
+  	display: block;
+  }
+
+}
