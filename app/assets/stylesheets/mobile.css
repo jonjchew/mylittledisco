@@ -11,7 +11,7 @@
   .container {
     float: left;
     background: #3c434b;
-    width: 360px;
+    width: 320px;
     min-height: 950px;
     text-align: center;
     position: absolute;
@@ -24,7 +24,7 @@
 
 
   .slide {
-    margin-left: 320px;
+    margin-left: 280px;
   }
 
 
@@ -185,7 +185,7 @@
     position: absolute;
     top: 0px;
     background-color: rgb(241, 241, 241);
-    width: 360px;
+    width: 320px;
     min-height: 100%;
     z-index: -1;
   }
@@ -219,7 +219,7 @@
 
   .landing-page-container {
     background-color: #3c434b;
-    width: 360px;
+    width: 320px;
     min-height: 600px;
     text-align: center;
   }
@@ -239,6 +239,10 @@
     position: relative;
     margin: 0 auto;
     margin-top: 20px;
+  }
+
+  .landing-page-container input[type=text] {
+    width: 245px;
   }
 
   .landing-page-container p {
