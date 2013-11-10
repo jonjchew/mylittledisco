@@ -198,12 +198,13 @@ var LandingPage = {
   },
   revealCreateInput: function() {
     $('#create-room-acc').addClass('reveal')
+    $('#create-room-input').focus()
   },
   bindJoinRoom: function() {
     $('#join-room-button').on('click', LandingPage.revealJoinInput)
   },
   revealJoinInput: function() {
-    console.log('hit')
     $('#join-room-acc').addClass('reveal')
+    $('#join-room-input').focus()
   }
 }
