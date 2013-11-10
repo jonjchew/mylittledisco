@@ -1,8 +1,15 @@
 @media screen and (max-width: 850px) {
+  html {
+    background-image:url(<%= asset_path('320bground.jpg')%> );
+    background-repeat:repeat-x;
+    background-color: #23272c;
+  }
 
   body {
     overflow-x: hidden;
-    background-color: #3c434b;
+    background-image:url(<%= asset_path('320bground.jpg')%> );
+    background-repeat:repeat-x;
+    background-color: #23272c;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -10,23 +17,23 @@
   }
   .container {
     float: left;
-    background: #3c434b;
-    width: 360px;
+    background: #23272c;
+    background-image:url(<%= asset_path('320bground.jpg')%> );
+    background-repeat:repeat-x;
+    width: 320px;
     min-height: 950px;
     text-align: center;
     position: absolute;
     color: white;
-    -webkit-transition:all 0.8s ease-in-out;
-    -moz-transition:all 0.8s ease-in-out;
-    -o-transition:all 0.8s ease-in-out;
-    transition:all 0.8s ease-in-out;
+    -webkit-transition:all 0.5s ease-in-out;
+    -moz-transition:all 0.5s ease-in-out;
+    -o-transition:all 0.5s ease-in-out;
+    transition:all 0.5s ease-in-out;
   }
-
 
   .slide {
-    margin-left: 320px;
+    margin-left: 280px;
   }
-
 
   .fixed{
     position: fixed;
@@ -36,7 +43,7 @@
     font-size: 1.8em;
     display: block;
     position: absolute;
-    top: 30px;
+    top: 11px;
     float: left;
     margin-left: 20px;
     cursor: pointer;
@@ -45,7 +52,7 @@
   #nav-bar {
     margin: 0 auto;
     width: 100%;
-    height: 5em;
+    height: 3em;
     position: fixed;
     background-color: rgba(0,0,0,0.8);
     z-index: 1;
@@ -56,12 +63,18 @@
     position: absolute;
   }
 
+  #nav-bar h1 {
+    margin-top: 2px;
+  }
+
   #stats {
     font-size: 0.6em;
+    margin-top: 50px;
+    display: inline-block;
   }
 
   #search-bar {
-    top: 110px;
+    top: 70px;
     font-family: 'Lato', sans-serif;
     font-size: 1em;
     width: 90%;
@@ -73,10 +86,18 @@
     border: none;
   }
 
+  #watermark {
+    margin-top: 75px;
+     -webkit-transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+    transition:all 0.3s ease-in-out;
+  }
+
   /*search results*/
 
   #results {
-    margin-top: 9em;
+    margin-top: 7em;
     float: left;
     margin-bottom: 5em;
     padding-right: .5em;
@@ -96,10 +117,9 @@
   }
 
   .song-art {
-    width: 100px;
+    width: 135px;
     margin: 0 auto;
     position: relative;
-    margin-right: 4em;
   }
 
   .song-art-overlay {
@@ -131,7 +151,7 @@
   #player {
     margin: 0 auto;
     width: 100%;
-    height: 5em;
+    height: 3em;
     position: fixed;
     background-color: rgba(0,0,0,0.8);
     bottom: 0px;
@@ -144,15 +164,16 @@
   #current-song-title {
     text-align: center;
     display: inline-block;
-    margin-top: 1em;
+    margin-top: 0.5em;
     font-size: .9em;
     width: 60%;
     color: white;
+    padding: 0px 10px 0px 10px;
   }
 
   .player-buttons {
     position: absolute;
-    bottom: 1.5em;
+    bottom: 0.7em;
     font-size: 1em;
     color: white;
     display: block;
@@ -185,14 +206,13 @@
     position: absolute;
     top: 0px;
     background-color: rgb(241, 241, 241);
-    width: 360px;
+    width: 320px;
     min-height: 100%;
     z-index: -1;
   }
 
   .playlist-container h1 {
     text-align: center;
-    margin-bottom: 2em;
   }
 
 
@@ -218,10 +238,12 @@
   /*landing page*/
 
   .landing-page-container {
-    background-color: #3c434b;
-    width: 360px;
+    background-color: #23272c;
+    width: 320px;
     min-height: 600px;
     text-align: center;
+    background-image:url(<%= asset_path('320bground.jpg')%> );
+    background-repeat:repeat-x;
   }
 
   #logo {
@@ -239,6 +261,10 @@
     position: relative;
     margin: 0 auto;
     margin-top: 20px;
+  }
+
+  .landing-page-container input[type=text] {
+    width: 245px;
   }
 
   .landing-page-container p {

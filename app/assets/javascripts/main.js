@@ -7,6 +7,7 @@ $(document).ready(function(){
 
   bindPlayer();
   LandingPage.init()
+  focusSearchBar()
 });
 
 var updateUserCount = function(data) {
@@ -249,5 +250,11 @@ var LandingPage = {
     e.preventDefault()
     $('#join-room-acc').addClass('reveal')
     $('#join-room-input').focus()
+  }
+}
+
+function focusSearchBar() {
+  if($('#search-bar').length>0){
+    $('#search-bar').focus()
   }
 }
