@@ -8,6 +8,10 @@ $(document).ready(function(){
   bindPlayer();
 });
 
+var updateUserCount = function(data) {
+  $('#user-count').text(data["users"])
+}
+
 var Ws = {
   init: function(channelName, url, useWebSockets) {
     Ws.channelName = channelName
@@ -29,7 +33,7 @@ var Ws = {
     Ws.channel.bind('play_song', AudioPlayer.play)
     Ws.channel.bind('pause_song', AudioPlayer.pause)
     Ws.channel.bind('next_song', AudioPlayer.next_song)
-
+    Ws.channel.bind('update_user_count', updateUserCount)
     Ws.channel.bind('add_song', function(data){
       Playlist.add(data.song)
     })
@@ -48,11 +52,12 @@ var Ws = {
     })
 
     Ws.channel.bind('remove_song', function(data){
-      Playlist.removeSong(data.songId)
+      Playlist.removeSong(parseInt(data.songId))
     })
   },
 
   add_song: function(e) {
+    $(e.target).addClass('disabled')
     var track_id = e.target.value
     var song_object = Search.getSong(track_id)
     Ws.dispatcher.trigger('add_song', {
@@ -65,12 +70,38 @@ var Ws = {
 var Room = {
   getRoomState: function() {
     return {
-      info: 'here'
+      currentSong: AudioPlayer.currentSong,
+      currentTime: AudioPlayer.song.currentTime,
+      queue: Playlist.queue,
+      paused: AudioPlayer.song.paused
     };
   },
 
   updateRoomState: function(data) {
-    console.log(JSON.stringify(data));
+
+    if (AudioPlayer.song.src === "" && data["room_info"]["currentSong"] ) {
+      var beforeLoad = Date.now()
+      AudioPlayer.set_current_song(data["room_info"]["currentSong"])
+
+      AudioPlayer.song.onloadeddata = function() {
+        var afterLoad = Date.now();
+        var loadTime = (afterLoad - beforeLoad)/1000
+
+        AudioPlayer.song.currentTime = data["room_info"]["currentTime"]
+        if (!data["room_info"]["paused"]) {
+          AudioPlayer.song.currentTime += loadTime
+          AudioPlayer.play()
+        }
+      }
+
+      Playlist.queue = data["room_info"]["queue"]
+      Playlist.displayPlaylist()
+
+    }
+
+    Ws.dispatcher.trigger('update_user_count', {
+        room_number: Ws.channelName
+    })
   }
 }
 
@@ -78,28 +109,37 @@ var Room = {
 var AudioPlayer = {
   song: new Audio,
 
-  set_current_song: function(song_url) {
-    AudioPlayer.song.src = song_url
+  set_current_song: function(song_object) {
+    AudioPlayer.currentSong = song_object
+    AudioPlayer.song.src = song_object.MLDStream
     AudioPlayer.song.load()
+    AudioPlayer.setSongText(song_object.title)
     AudioPlayer.bindEnd()
   },
   play: function() {
     AudioPlayer.song.play();
+    $('#play').css('display', 'none')
+    $('#pause').css('display', 'block')
   },
   pause: function() {
     AudioPlayer.song.pause();
+    $('#pause').css('display', 'none')
+    $('#play').css('display', 'block')
   },
   next_song: function() {
     AudioPlayer.song.src = null
     if(Playlist.queue.length!=0){
       song = Playlist.pop_first_song()
-      AudioPlayer.set_current_song(song.MLDStream)
+      AudioPlayer.set_current_song(song)
       AudioPlayer.play()
       Playlist.displayPlaylist()
     }
   },
   bindEnd: function() {
     $(AudioPlayer.song).bind('ended', AudioPlayer.next_song)
+  },
+  setSongText: function(text) {
+    $('#current-song-title').text(text)
   }
 };
 
@@ -108,7 +148,7 @@ var Playlist = {
 
   add: function(song_object) {
     if(AudioPlayer.song.src===""){
-      AudioPlayer.set_current_song(song_object.MLDStream)
+      AudioPlayer.set_current_song(song_object)
       AudioPlayer.play()
     }
     else {
@@ -129,15 +169,23 @@ var Playlist = {
   displaySong: function(song_object) {
     var $item = $('#hidden .playlist-item').clone()
     $item.find('.song-title').text(song_object.title)
-    $item.find('.remove-song-button').val(song_object.id).on('click',Playlist.removeSongCallback)
+    $item.find('.remove-song-button').attr('data-id',song_object.id).on('click',Playlist.removeSongCallback)
+
+    if(song_object.artwork_url!=null){
+      barge_size_image = song_object.artwork_url.replace(/large/,"badge")
+      $item.find('.playlist-image').attr('src', barge_size_image)
+    }
+    else {
+      $item.find('.playlist-image').attr('src', "http://i1.sndcdn.com/artworks-000033564444-hama0x-badge.jpg?3eddc42")
+    }
     return $item
   },
   removeSongCallback: function(clickEvent) {
 
-    var songId = clickEvent.target.value
+    var songId = $(event.target).attr('data-id')
 
     Ws.dispatcher.trigger('remove_song', {
-      room_number: Ws.roomId,
+      room_number: Ws.channelName,
       songId: songId
     })
   },
@@ -156,26 +204,24 @@ var Playlist = {
 
 function bindPlayer(){
   $('#play').on('click', function(){
-    Ws.dispatcher.trigger('play_song', {
-      room_number: Ws.roomId
-    });
+    if(AudioPlayer.song.src!=""){
+      Ws.dispatcher.trigger('play_song', {
+        room_number: Ws.channelName
+      });
+    }
   });
   $('#pause').on('click', function(){
     Ws.dispatcher.trigger('pause_song', {
-      room_number: Ws.roomId
+      room_number: Ws.channelName
     });
   });
   $('#next').on('click', function(){
     Ws.dispatcher.trigger('next_song', {
-      room_number: Ws.roomId
+      room_number: Ws.channelName
     });
   });
-  $('.add-song-button').on('click', function() {
-    // var track_id = $('#add-song-field').val()
-    // $('#add-song-field').val('')
-    // Ws.dispatcher.trigger('add_song', {
-    //   room_number: Ws.roomId,
-    //   song: track_id
-    // })
+  $('#mobile-menu').on('click', function() {
+    $('.container').toggleClass('slide')
+    // $(this.find('.song-art-overlay')).css('opacity','0.8')
   });
 }

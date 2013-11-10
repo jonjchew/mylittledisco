@@ -24,10 +24,12 @@ class PartiesController < WebsocketRails::BaseController
     room_number = message[:room_number].to_s
     connection_store[:room_number] = room_number
 
-    WebsocketRails[room_number].subscribers.sample.trigger(WebsocketRails::Event.new(:room_state, {
-      :channel => room_number,
-      :data => {}
-    }))
+    if WebsocketRails[room_number].subscribers.count > 1
+      WebsocketRails[room_number].subscribers.first.trigger(WebsocketRails::Event.new(:room_state, {
+        :channel => room_number,
+        :data => {}
+      }))
+    end
 
     connection_store[room_number] = __get_next_guest_name(room_number)
     WebsocketRails[connection_store[:room_number]].trigger(:new_user, {
@@ -70,6 +72,11 @@ class PartiesController < WebsocketRails::BaseController
     else
       next_guest_number = 'Guest1'
     end
+  end
+
+  def update_user_count
+    user_count = WebsocketRails[message[:room_number]].subscribers.count
+    WebsocketRails[message[:room_number]].trigger(:update_user_count, {users: user_count})
   end
 
 end

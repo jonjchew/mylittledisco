@@ -1,30 +1,60 @@
-<div id="room" class="well" data-uri="<%= request.host %>:<%= request.port %>/websocket">
+<div class="playlist-container">
+  <h1> Playlist </h1>
+  <div id='playlist'>
+  </div>
 </div>
 
-<h1>Welcome to <span id="room-name"><%= @room.name %><span></h1>
-<h2>there are <%= @room.users_count %> users currently in this room</h2>
-<h2><i id='play' class="player-buttons fa fa-play"></i> <i id='pause' class="player-buttons fa fa-pause"></i> <i id='next' class="player-buttons fa fa-fast-forward"></i></h2>
 
 <div id="chat">
   <textarea id="chat-message"></textarea>
   <ul id="chat-wrapper"></ul>
 </div>
 
-<div id="playlist"></div>
 
-
-<textarea id="search-bar"></textarea>
-
-<div id="results"></div>
-
-<div id="hidden">
-  <div class="song">
-    <span class="song-title"></span>
-    <button class="add-song-button">add this song</button>
+<div class="container">
+  <div id="room" class="well" data-uri="<%= request.host %>:<%= request.port %>/websocket">
   </div>
-  <div class="playlist-item">
-    <span class="song-title"></span>
-    <button class="remove-song-button">remove this song</button>
+  <div id='nav-bar'>
+    <i id='mobile-menu' class='fa fa-bars'></i>
+    <h1><span id="room-name"><%= @room.name %><span></h1>
+
+    <% if @room.users_count > 1 %>
+      <p id='stats'><span id="user-count"><%= @room.users_count %></span> listeners currently in this room.</p>
+    <% end %>
+  </div>
+  <input placeholder='Add a song to your playlist' type"text" id="search-bar">
+
+  <div id="results"></div>
+
+  <div id="hidden">
+    <!-- search song template -->
+    <div class="song">
+      <div class="song-art">
+        <div class='song-art-image'>
+        </div>
+        <div class='song-art-overlay'>
+        </div>
+      </div>
+      <div class="song-title">
+      </div>
+    </div>
+
+    <!-- playlist song template -->
+      <div class="playlist-item">
+        <img class="playlist-image">
+        <div class="song-title"></div>
+         <i class="remove-song-button fa fa-times-circle"></i>
+      </div>
+
+  </div>
+
+  <div id="player">
+    <div id='player-controls'>
+      <i id='play' class="player-buttons fa fa-play fa-lg"></i>
+      <i id='pause' class="player-buttons fa fa-pause fa-lg"></i>
+      <div id='current-song-title'></div>
+      <i id='next' class="player-buttons fa fa-fast-forward fa-lg"></i>
+    </div>
   </div>
 </div>
 

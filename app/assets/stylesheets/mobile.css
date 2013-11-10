@@ -1,0 +1,192 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+.container {
+  float: left;
+  background: gray;
+  width: 360px;
+  min-height: 950px;
+  text-align: center;
+  position: relative;
+  -webkit-transition:all 0.8s ease-in-out;
+  -moz-transition:all 0.8s ease-in-out;
+  -o-transition:all 0.8s ease-in-out;
+  transition:all 0.8s ease-in-out;
+}
+.slide {
+  margin-left: 320px;
+}
+
+#mobile-menu {
+  font-size: 1.8em;
+  display: block;
+  position: absolute;
+  top: 30px;
+  float: left;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+#nav-bar {
+  background-color: rgba(0,0,0,0.8);
+  position: absolute;
+  color: white;
+  width: 100%;
+  top: 0px;
+}
+
+
+#nav-bar h1 {
+
+}
+
+#stats {
+  font-size: 0.6em;
+}
+
+#search-bar {
+  top: 110px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+  width: 90%;
+  height: 2em;
+  position: relative;
+  margin: 0 auto;
+  text-indent: 1em;
+  border: none;
+}
+
+/*search results*/
+
+#results {
+  margin-top: 9em;
+  float: left;
+  margin-bottom: 5em;
+}
+
+.song {
+  display: inline-block;
+  width: 50%;
+  height: 170px;
+  float: left;
+  font-size: 0.85em;
+  margin-bottom: 1em;
+}
+
+.song-art {
+  width: 100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.song-art-overlay {
+  cursor: pointer;
+  background: black;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 0.0;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.song-art-overlay {
+  cursor: pointer;
+}
+
+.song-art-overlay.disabled {
+  opacity: 0.5;
+  cursor: auto;
+  pointer-events:none;
+}
+/*player */
+#player {
+  margin: 0 auto;
+  width: 100%;
+  height: 5em;
+  position: fixed;
+  background-color: rgba(0,0,0,0.8);
+  bottom: 0px;
+}
+
+#player-controls {
+  width: 100%;
+  text-align: center;
+}
+#current-song-title {
+  text-align: center;
+  display: inline-block;
+  margin-top: 1.5em;
+  font-size: .9em;
+  width: 60%;
+  color: white;
+}
+
+.player-buttons {
+  position: absolute;
+  bottom: 1.5em;
+  font-size: 1em;
+  color: white;
+  display: block;
+  cursor: pointer;
+  width: 10%;
+}
+
+#play {
+  left: 20px;
+}
+
+#pause {
+  left: 20px;
+  display: none;
+}
+
+#next {
+  width: 10%;
+}
+
+
+
+/*playlist */
+.playlist-container {
+  position: absolute;
+  top: 0px;
+  background-color: white;
+  width: 360px;
+  height: 100%;
+  z-index: -1;
+}
+
+.playlist-container h1 {
+  text-align: center;
+}
+
+.fa-times-circle {
+  cursor: pointer;
+  color: gray;
+}
+#playlist {
+  margin: 1em;
+}
+
+.playlist-item {
+  margin-top: 1em;
+  border-bottom: 1px;
+  border-bottom-style: solid;
+  border-color: #ccc;
+}
+.song-title {
+  display: inline-block;
+  width: 65%;
+  margin-left: .5em;
+  font-size: .8em;
+}
+
