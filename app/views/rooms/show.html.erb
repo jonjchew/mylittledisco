@@ -18,9 +18,12 @@
 
   </div>
   
-  <% if @room.users_count > 1 %>
-    <p id='stats'><span id="user-count"><%= @room.users_count %></span> listeners currently in this room.</p>
+    <p id='stats'>
+      <span id="user-count"><%= @room.users_count %></span> listener
+  <% if @room.users_count != 1 %>
+    s
   <% end %>
+   currently in this room.</p>
 
   
   <input placeholder='Add a song to your playlist' type"text" id="search-bar">
