@@ -1,54 +1,54 @@
 $(document).ready(function(){
-  bindPlayer()
-  Ws.init($('#room').data('uri'), true)
+  var roomName      = document.getElementById('room-name').innerText,
+      socketUrl     = $('#room').data('uri'),
+      useWebSockets = true;
+
+  Ws.init(roomName, socketUrl, useWebSockets);
+
+  bindPlayer();
 });
 
-function Ws(channel) {
-  this.dispatcher = new WebSocketRails('localhost:3000/websocket', true);
-  this.setChannel(channel);
-  this.bind(channel);
-};
-
-Ws.prototype.setChannel = function(channel) {
-  this.channel = this.dispatcher.subscribe(channel);
-};
-
-Ws.prototype.bind = function(channel) {
-  var self = this;
-
-  self.channel.bind('get_info', function(data) {
-    console.log('INFO FROM HERE')
-    self.dispatcher.trigger('sync_player', {
-      current_song_time: Math.floor(Math.random() * 100)
-    });
-  });
-
-  self.channel.bind('sync_player', function(data) {
-    console.log(JSON.stringify(data));
-  });
-
-  self.dispatcher.on_open = function(data) {
-    self.dispatcher.trigger('sync_new_user', {
-      room_number: channel
-    });
-  };
-};
-
 var Ws = {
-  init: function(url, useWebSockets) {
+  init: function(channelName, url, useWebSockets) {
+    Ws.channelName = channelName
+
     Ws.dispatcher = new WebSocketRails(url, useWebSockets)
-    Ws.roomId = document.getElementById('room-name').innerText
-    Ws.channel = Ws.dispatcher.subscribe(Ws.roomId)
+    Ws.channel    = Ws.dispatcher.subscribe(Ws.channelName)
+
     Ws.bind()
   },
+
   bind: function() {
+    Ws.dispatcher.on_open = function(data) {
+      // Set connection information on server once socket is opened
+      Ws.dispatcher.trigger('sync_new_user', {
+        room_number: Ws.channelName
+      })
+    }
+
     Ws.channel.bind('play_song', AudioPlayer.play)
     Ws.channel.bind('pause_song', AudioPlayer.pause)
     Ws.channel.bind('next_song', AudioPlayer.next_song)
+
     Ws.channel.bind('add_song', function(data){
       Playlist.add(data.song)
     })
+
+    // Update current room state
+    Ws.channel.bind('synchronize_room', function(data) {
+      Room.updateRoomState(data);
+    })
+
+    // Retrives current room state
+    Ws.channel.bind('room_state', function(data) {
+      // Send current Room state to server so it can sync other users
+      Ws.dispatcher.trigger('synchronize_channel', {
+        room_info: Room.getRoomState()
+      })
+    })
+
   },
+
   add_song: function(e) {
     var track_id = e.target.value
     var song_object = Search.getSong(track_id)
@@ -56,6 +56,18 @@ var Ws = {
       room_number: Ws.roomId,
       song: song_object
     })
+  }
+}
+
+var Room = {
+  getRoomState: function() {
+    return {
+      info: 'here'
+    };
+  },
+
+  updateRoomState: function(data) {
+    console.log(JSON.stringify(data));
   }
 }
 
