@@ -1,5 +1,9 @@
 #My Little Disco
-My Little Disco is a real time music streaming application. Users can share playlists and listen to them with their friends.
+My Little Disco is a real-time music sharing application that allows you to listen to music with your friends and loved ones quickly and easily. What sets us apart is that everyone has total control of the playlist, with any change immediately updating everyone's experience. We trust our users. We think moderators, points, and curation get in the way of whats really important: sharing the music you love with the people you love.
+
+This project was developed in 48 hours at [LAUNCH Hackathon](http://hackathon.launch.co/) on November 8-10, 2013.
+
+Final app can be seen [here](http://mylittledisco.herokuapp.com).
 
 #MVP
 * User can create a room
