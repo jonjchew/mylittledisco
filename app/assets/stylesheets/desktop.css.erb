@@ -278,10 +278,80 @@ body {
 
 /*chat */
 
-#chat-container, #mobile-menu-chat{
+#mobile-menu-chat{
   display: none;
 
 }
+#desktop-menu-chat {
+  position: absolute;
+  top: 1.5em;
+  right: 20px;
+  cursor: pointer;
+}
+
+#chat-container {
+    position: absolute;
+    top: 6em;
+    width: 20em;
+    height: 33em;
+    z-index: 1;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    background-color: rgb(241, 241, 241);
+    right: -20em;
+
+}
+
+
+#chat-container.appear {
+  right: 0em;
+}
+#chat-container h1 {
+  width: 100%;
+  text-align: center;
+}
+
+
+  #chat-container input {
+    margin: 0 auto;
+    margin-left: 1em;
+    width: 90%;
+    height: 2em;
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    text-indent: 1em;
+    border: none;
+
+  }
+
+  #chat-wrapper {
+    margin-left: 1em;
+    padding: 0;
+  }
+  #chat-wrapper li {
+    list-style: none;
+  }
+
+  #chat-wrapper li span {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+
+  #chat-container.show {
+    display: block;
+    z-index: -1;
+  }
+  
+  #search-wrapper {
+    margin-top: 30px;
+  }
+
+
+
+
 @media screen and (max-width: 850px) {
   .container {
     margin: 0 auto;

@@ -243,6 +243,10 @@ function bindPlayer(){
   $('#playlist-toggle').on('click', function() {
     $('.playlist-container').toggleClass('show-full')
   });
+
+  $('#desktop-menu-chat').on('click', function() {
+    $('#chat-container').toggleClass('appear')
+  });
 }
 
 
