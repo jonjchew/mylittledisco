@@ -3,6 +3,8 @@ My Little Disco is a real-time music sharing application that allows you to list
 
 This project was developed in 48 hours at [LAUNCH Hackathon](http://hackathon.launch.co/) on November 8-10, 2013.
 
+Final app can be seen [here](http://mylittledisco.herokuapp.com).
+
 #MVP
 * User can create a room
 * User can see a list of rooms on the homepage ordered by most popular
